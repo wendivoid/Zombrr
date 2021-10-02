@@ -1,0 +1,5 @@
+{
+    label: "Y-Bot",
+    description: "Male Robot",
+    scene: "ybot.glb",
+}

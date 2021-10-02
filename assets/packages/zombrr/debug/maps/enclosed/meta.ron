@@ -1,0 +1,12 @@
+{
+    priority: 0,
+    label: "Enclosed",
+    description: "Small enclosed space",
+    sky: (
+        preset: PurpleDusk
+    ),
+    map: (
+        type: "Gltf",
+        path: "enclosed.glb"
+    )
+}

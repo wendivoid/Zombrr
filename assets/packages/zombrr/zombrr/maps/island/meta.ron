@@ -1,0 +1,14 @@
+// https://sketchfab.com/3d-models/medieval-castle-with-village-5109b5e46e064790badecedf8f6d2ef6#download
+
+{
+    priority: 0,
+    label: "Island",
+    description: "Low Poly Island",
+    sky: (
+        preset: StellarDawn
+    ),
+    map: (
+        type: "Gltf",
+        path: "island.glb"
+    )
+}

@@ -1,0 +1,11 @@
+// https://sketchfab.com/3d-models/geonosis-arena-797d475ee192467399c0ee6ee15b41ed
+
+{
+    priority: 0,
+    label: "Geonosis",
+    description: "Geonosis",
+    map: (
+        type: "Gltf",
+        path: "geonosis.glb"
+    )
+}

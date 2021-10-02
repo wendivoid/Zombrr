@@ -1,0 +1,13 @@
+{
+    priority: 0,
+    label: "Plain",
+    description: "Small Empty Space",
+    sky: (
+        active: true,
+        day_length: 10.0
+    ),
+    map: (
+        type: "Gltf",
+        path: "plain.glb"
+    )
+}

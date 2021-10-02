@@ -1,0 +1,15 @@
+# Editor Directories
+/.idea
+/.vscode
+
+# Blender Files
+*.blend[0-9]
+
+# Rust files
+/target
+/Cargo.lock
+**/*.rs.bak
+
+# Personal References and resources
+/resources/
+/references/

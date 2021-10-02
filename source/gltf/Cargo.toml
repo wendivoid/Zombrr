@@ -1,0 +1,26 @@
+[package]
+name = "zombrr-gltf"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+# bevy
+bevy_app = "0.5.0"
+bevy_asset = "0.5.0"
+bevy_core = "0.5.0"
+bevy_ecs = "0.5.0"
+bevy_pbr = "0.5.0"
+bevy_render = "0.5.0"
+bevy_transform = "0.5.0"
+bevy_math = "0.5.0"
+bevy_scene = "0.5.0"
+bevy_log = "0.5.0"
+bevy_reflect = { version = "0.5.0", features = ["bevy"] }
+
+# other
+gltf = { version = "0.15.2", default-features = false, features = ["utils", "names", "KHR_materials_unlit", "extras"] }
+thiserror = "1.0"
+anyhow = "1.0"
+base64 = "0.13.0"
+serde_json = "1.0.67"
+serde = { version = "1.0.129", features = ["derive"] }

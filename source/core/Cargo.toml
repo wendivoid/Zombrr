@@ -1,0 +1,9 @@
+[package]
+name = "zombrr-core"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+ron = "0.6.4"
+tracing = "0.1.27"
+serde = { version = "1.0.129", features = ["derive"] }
