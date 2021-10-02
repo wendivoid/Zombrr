@@ -6,7 +6,7 @@ created and customizable maps, characters, weapons, and game modes.
 
 **WARN**: I fully expect this project to go no where and never amount to anything.
 
-![alt text](./resources/github/Sandbox.png)
+![alt text](./.github/Sandbox.png)
 
 ## crates
 
@@ -18,7 +18,7 @@ Development has moved to [bevy_devtools](https://github.com/Bytebuddha/bevy_devt
 
 #### bevy_hilt
 
-![alt text](./resources/github/hilt.png)
+![alt text](./.github/hilt.png)
 
 This is a debug renderer for rapier3d. In a perfect world i could upstream this to
 bevy_rapier in the next couple months and not maintain this here. My development on this has moved to [bevy_hilt](https://github.com/Bytebuddha/bevy_hilt).
