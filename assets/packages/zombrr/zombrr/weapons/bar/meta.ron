@@ -1,0 +1,5 @@
+{
+    label: "Bar",
+    description: "Common Rifle",
+    scene: "bar.glb"
+}
