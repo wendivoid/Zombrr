@@ -2,13 +2,25 @@ use bevy::prelude::*;
 use bevy_loading::Progress;
 use bevy_rapier3d::prelude::*;
 use bevy_hilt::prelude::{HiltDebugCollider, HiltDebugPosition};
+use zombrr_core::{ ZombrrPackages, ArenaOptions };
 
 pub fn init_player(
     mut commands: Commands,
+    assets: Res<AssetServer>,
+    packages: Res<ZombrrPackages>,
+    options: Res<ArenaOptions>,
     query: Query<(&Name, &GlobalTransform), With<crate::arena::map::ArenaGltfMapObject>>
 ) -> Progress {
     for (name, global_transform) in query.iter() {
         if name.as_str() == "PlayerSpawn" {
+            let character = packages.get_character(&options.player.character).unwrap();
+            let mut character_path = character.path.clone();
+            character_path.push(&character.meta.scene);
+            let character_path = format!("{}#Scene0", character_path.to_str().unwrap());
+            let weapon = packages.get_weapon(&options.player.weapon).unwrap();
+            let mut weapon_path = weapon.path.clone();
+            weapon_path.push(&weapon.meta.scene);
+            let weapon_path = format!("{}#Scene0", weapon_path.to_str().unwrap());
             commands.spawn()
                 .insert(Name::new("Player"))
                 .insert(super::PlayerRoot)
@@ -47,12 +59,28 @@ pub fn init_player(
                 .with_children(|parent| {
                     parent.spawn()
                         .insert(Name::new("Cameras"))
-                        .insert(Transform::from_xyz(0.0, 2.0, 0.0))
+                        .insert(Transform::from_xyz(0.0, 2.0, 0.7))
                         .insert(GlobalTransform::from_xyz(0.0, 2.0, 0.0))
                         .with_children(|parent| {
                             parent.spawn_bundle(PerspectiveCameraBundle::new_3d())
                                 .insert(bevy_sky::SkyCameraTag);
                             parent.spawn_bundle(bevy_hilt::prelude::HiltPerspectiveCameraBundle::default());
+                        });
+                    let mut char_transform = Transform::identity();
+                    char_transform.rotate(Quat::from_rotation_y(std::f32::consts::PI));
+                    parent.spawn()
+                        .insert(Name::new("Character"))
+                        .insert(char_transform)
+                        .insert(GlobalTransform::identity())
+                        .with_children(|parent| {
+                            parent.spawn_scene(assets.load(character_path.as_str()));
+                        });
+                    parent.spawn()
+                        .insert(Name::new("Weapon"))
+                        .insert(Transform::from_xyz(0.3, 1.4, -1.0))
+                        .insert(GlobalTransform::identity())
+                        .with_children(|parent| {
+                            parent.spawn_scene(assets.load(weapon_path.as_str()));
                         });
                 });
             return Progress { done: 1, total: 1 };

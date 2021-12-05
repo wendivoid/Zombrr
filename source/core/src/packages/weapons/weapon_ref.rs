@@ -10,7 +10,7 @@ impl Default for WeaponRef {
         WeaponRef {
             namespace: "zombrr".into(),
             package: "zombrr".into(),
-            name: "m4a1".into()
+            name: "bar".into()
         }
     }
 }
