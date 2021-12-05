@@ -4,7 +4,7 @@ use bevy::input::mouse::MouseMotion;
 use super::Navigatable;
 
 pub struct KeyboardInput;
-pub struct MouseInput { pub sensitivity: f32 }
+pub struct MouseInput { pub sensitivity: f32, pub disabled: bool }
 
 pub fn keyboard_input(
     keys: Res<Input<KeyCode>>,
@@ -39,9 +39,16 @@ pub fn keyboard_input(
 pub fn mouse_input(
     time: Res<Time>,
     mut mousemotion: EventReader<MouseMotion>,
-    mut query: Query<(&mut Navigatable, &MouseInput)>
+    keys: Res<Input<KeyCode>>,
+    mut query: Query<(&mut Navigatable, &mut MouseInput)>
 ) {
-    for (mut navigatable, mouse) in query.iter_mut() {
+    for (mut navigatable, mut mouse) in query.iter_mut() {
+        if keys.just_pressed(KeyCode::Escape) {
+            mouse.disabled = !mouse.disabled;
+        }
+        if mouse.disabled {
+            continue;
+        }
         let delta_s = time.delta_seconds();
         let mut delta_m = Vec2::ZERO;
 

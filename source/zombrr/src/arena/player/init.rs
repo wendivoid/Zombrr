@@ -16,7 +16,9 @@ pub fn init_player(
                 .insert(Transform::from(*global_transform))
                 .insert(crate::arena::controllers::navigatable::Navigatable::default())
                 .insert(crate::arena::controllers::navigatable::KeyboardInput)
-                .insert(crate::arena::controllers::navigatable::MouseInput { sensitivity: 10.0 })
+                .insert(crate::arena::controllers::navigatable::MouseInput {
+                    sensitivity: 10.0, disabled: false
+                })
                 .insert_bundle(RigidBodyBundle {
                     body_type: RigidBodyType::Dynamic,
                     position: (
