@@ -84,4 +84,9 @@ impl ZombrrPackages {
         self.0.iter()
             .map(|x| (x.name.as_str(), x.packages.iter().map(|p| (p.name.as_str(), p.maps.iter()))))
     }
+
+    pub fn get_characters(&self) -> impl Iterator<Item=(&str, impl Iterator<Item=(&str, impl Iterator<Item = &Character>)>)> {
+        self.0.iter()
+            .map(|x| (x.name.as_str(), x.packages.iter().map(|p| (p.name.as_str(), p.characters.iter()))))
+    }
 }

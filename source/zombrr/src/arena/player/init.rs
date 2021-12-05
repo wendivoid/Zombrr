@@ -41,11 +41,7 @@ pub fn init_player(
                     ..Default::default()
                 })
                 .insert_bundle(ColliderBundle {
-                    shape: ColliderShape::capsule(
-                        Vec3::new(0.0, 0.0, 0.0).into(),
-                        Vec3::new(0.0, 4.0, 0.0).into(),
-                        1.0
-                    ),
+                    shape: ColliderShape::cuboid(0.25, 1.0, 0.25),
                     position: Vec3::new(0.0, 1.0, 0.0).into(),
                     mass_properties: ColliderMassProps::Density(1.0),
                     flags: ActiveEvents::CONTACT_EVENTS.into(),
