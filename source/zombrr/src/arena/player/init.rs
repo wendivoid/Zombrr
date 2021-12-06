@@ -28,7 +28,7 @@ pub fn init_player(
                 .with_children(|parent| {
                     PlayerCamerasBundle::spawn(parent, Transform::from_xyz(0.0, 2.0, 0.7));
                     CharacterBundle::spawn(parent, char_transform, character_handle);
-                    WeaponBundle::spawn(parent, Transform::from_xyz(0.3, 1.4, -1.0), weapon_handle);
+                    WeaponBundle::spawn(parent, Transform::from_xyz(0.1, 1.6, -0.5), weapon_handle);
                 });
             return Progress { done: 1, total: 1 };
         }
