@@ -15,12 +15,14 @@ impl Map {
     pub fn load<P: AsRef<Path>>(map_path: P) -> Result<Map, ron::Error> {
         let name = map_path.as_ref().file_name().unwrap().to_string_lossy().to_string();
         let path = map_path.as_ref().to_path_buf();
-        tracing::debug!("Loading map: `{}` {:?}", name, path);
-        Ok(Map {
-            name,
-            path,
-            meta: Self::load_meta(&map_path)?
-        })
+        let map = Map { name, path, meta: Self::load_meta(&map_path)? };
+        tracing::debug!("Loading Map `{}`\n\t-> Name = {}\n\t-> Path = {:?}\n\t-> Priority = {}",
+            map.name,
+            map.name,
+            map.path,
+            map.meta.priority
+        );
+        Ok(map)
     }
 
     pub fn load_meta<P: AsRef<Path>>(path: P) -> Result<MapMeta, ron::Error> {

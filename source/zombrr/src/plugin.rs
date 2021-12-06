@@ -20,7 +20,6 @@ impl Plugin for ZombrrPlugin {
                 ..Default::default()
             })
             .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
-
             // Booting State
             .add_plugin(LoadingPlugin {
                 loading_state: ZombrrState::Booting,

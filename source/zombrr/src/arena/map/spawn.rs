@@ -19,7 +19,10 @@ pub fn spawn_arena(
     mut sky_materials: ResMut<Assets<SkyMaterial>>,
 ) {
     if let Some(map) = packages.get_map(&options.map) {
-        debug!("Spawning map: {:?}", map);
+        debug!(
+            "Spawning Map `{}`\n\t-> Name = {}\n\t-> Path: {:?}\n\t-> Ambient Light = {:?}\n\t-> Skybox = {:?}",
+            map.name, map.name, map.path, map.meta.ambient_light, map.meta.sky
+        );
         match &map.meta.map {
             MapData::Gltf { path } => {
                 let mut map_path = map.path.clone();
@@ -35,12 +38,10 @@ pub fn spawn_arena(
                 });
             }
         }
-        debug!("Setting ambient brightness: {:?}", map.meta.ambient_light);
         commands.insert_resource(AmbientLight {
             color: zombrr_color_to_bevy_color(&map.meta.ambient_light.color),
             brightness: map.meta.ambient_light.brightness
         });
-        debug!("Spawning Skybox: {:?}", map.meta.sky);
         commands.spawn_bundle(SkyBundle {
             sun: Sun {
                 latitude: map.meta.sky.latitude as f64,

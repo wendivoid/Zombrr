@@ -15,12 +15,16 @@ impl Weapon {
     pub fn load<P: AsRef<Path>>(weapon_path: P) -> Result<Weapon, ron::Error> {
         let name = weapon_path.as_ref().file_name().unwrap().to_string_lossy().to_string();
         let path = weapon_path.as_ref().to_path_buf();
-        tracing::debug!("Loading weapon: `{}` {:?}", name, path);
         let weapon = Weapon {
             name,
             path,
             meta: Self::load_meta(&weapon_path)?
         };
+        tracing::debug!("Loading Weapon `{}`\n\t-> Name = {}\n\t-> Path = {:?}",
+            weapon.name,
+            weapon.name,
+            weapon.path,
+        );
         Ok(weapon)
     }
 
@@ -33,5 +37,11 @@ impl Weapon {
 
     pub fn text_label(&self) -> &str {
         self.meta.label.as_ref().unwrap_or(&self.name)
+    }
+
+    pub fn scene_file(&self) -> String {
+        let mut path = self.path.clone();
+        path.push(&self.meta.scene);
+        format!("{}#Scene0", path.to_str().unwrap())
     }
 }

@@ -8,8 +8,8 @@ pub use self::plugin::EnemyPlugin;
 use zombrr_core::packages::CharacterRef;
 
 pub struct SpawnEnemy {
+    pub speed: f32,
     pub translation: bevy::math::Vec3,
     pub character: CharacterRef
 }
-
 pub struct EnemyRoot;

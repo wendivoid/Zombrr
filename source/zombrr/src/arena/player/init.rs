@@ -14,13 +14,7 @@ pub fn init_player(
     for (name, global_transform) in query.iter() {
         if name.as_str() == "PlayerSpawn" {
             let character = packages.get_character(&options.player.character).unwrap();
-            let mut character_path = character.path.clone();
-            character_path.push(&character.meta.scene);
-            let character_path = format!("{}#Scene0", character_path.to_str().unwrap());
             let weapon = packages.get_weapon(&options.player.weapon).unwrap();
-            let mut weapon_path = weapon.path.clone();
-            weapon_path.push(&weapon.meta.scene);
-            let weapon_path = format!("{}#Scene0", weapon_path.to_str().unwrap());
             commands.spawn()
                 .insert(Name::new("Player"))
                 .insert(super::PlayerRoot)
@@ -69,14 +63,14 @@ pub fn init_player(
                         .insert(char_transform)
                         .insert(GlobalTransform::identity())
                         .with_children(|parent| {
-                            parent.spawn_scene(assets.load(character_path.as_str()));
+                            parent.spawn_scene(assets.load(character.scene_file().as_str()));
                         });
                     parent.spawn()
                         .insert(Name::new("Weapon"))
                         .insert(Transform::from_xyz(0.3, 1.4, -1.0))
                         .insert(GlobalTransform::identity())
                         .with_children(|parent| {
-                            parent.spawn_scene(assets.load(weapon_path.as_str()));
+                            parent.spawn_scene(assets.load(weapon.scene_file().as_str()));
                         });
                 });
             return Progress { done: 1, total: 1 };

@@ -1,7 +1,10 @@
 use bevy::prelude::*;
 use bevy::asset::AssetServerSettings;
+use bevy_devtools::DevToolsExt;
 
 mod skip_menu;
+mod change_map;
+pub mod events;
 
 fn main() {
     App::build()
@@ -16,6 +19,11 @@ fn main() {
         })
         // Add plugins
         .add_plugins(zombrr::ZombrrPlugins)
+
+        // Development Tools
+        .add_event::<events::ChangeMap>()
+        .add_system(change_map::handle_change_map.system())
+        .devtools_tool(change_map::change_map())
 
         // Temperary Systems
         .add_system_set(skip_menu::system_set())

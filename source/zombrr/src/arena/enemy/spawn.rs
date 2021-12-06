@@ -12,13 +12,14 @@ pub fn spawn_enemy(
     players: Query<Entity, With<crate::arena::player::PlayerRoot>>,
     mut events: EventReader<SpawnEnemy>,
 ) {
-    for SpawnEnemy { translation, character } in events.iter() {
+    for spawn_event in events.iter() {
         let player = players.single().unwrap();
-        debug!("Spawning Enemy with character: {:?}", character);
-        let character = packages.get_character(character).unwrap();
-        let mut character_path = character.path.clone();
-        character_path.push(&character.meta.scene);
-        let asset_path = format!("{}#Scene0", character_path.to_str().unwrap());
+        let character = packages.get_character(&spawn_event.character).unwrap();
+        let asset_path = character.scene_file();
+        debug!(
+            "Spawning Enemy\n\t-> Name = {:?}\n\t-> Position = {}\n\t-> Speed = {}\n\t-> Scene File = {}",
+            character.name, spawn_event.translation, spawn_event.speed, asset_path
+        );
         let mut char_transform = Transform::identity();
         char_transform.rotate(Quat::from_rotation_y(std::f32::consts::PI));
         commands.spawn()
@@ -27,13 +28,13 @@ pub fn spawn_enemy(
             .insert(GlobalTransform::identity())
             .insert(super::brain::BLine { to: player })
             .insert(crate::arena::controllers::navigatable::Navigatable {
-                speed: 0.2,
+                speed: spawn_event.speed,
                 ..Default::default()
             })
             .insert(super::EnemyRoot)
             .insert_bundle(RigidBodyBundle {
                 body_type: RigidBodyType::Dynamic,
-                position: (*translation).into(),
+                position: (spawn_event.translation).into(),
                 mass_properties: RigidBodyMassPropsFlags::ROTATION_LOCKED.into(),
                 ..Default::default()
             })
