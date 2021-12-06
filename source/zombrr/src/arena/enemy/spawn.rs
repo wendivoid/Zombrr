@@ -1,9 +1,8 @@
 use bevy::prelude::*;
-use bevy_hilt::prelude::*;
-use bevy_rapier3d::prelude::*;
 use zombrr_core::ZombrrPackages;
 
 use crate::arena::SpawnEnemy;
+use crate::arena::bundles::CharacterBundle;
 
 pub fn spawn_enemy(
     mut commands: Commands,
@@ -15,49 +14,22 @@ pub fn spawn_enemy(
     for spawn_event in events.iter() {
         let player = players.single().unwrap();
         let character = packages.get_character(&spawn_event.character).unwrap();
-        let asset_path = character.scene_file();
+        let character_path = character.scene_file();
         debug!(
             "Spawning Enemy\n\t-> Name = {:?}\n\t-> Position = {}\n\t-> Speed = {}\n\t-> Scene File = {}",
-            character.name, spawn_event.translation, spawn_event.speed, asset_path
+            character.name, spawn_event.translation, spawn_event.speed, character_path
         );
+
+        let enemy_transform = Transform::from_translation(spawn_event.translation);
+
         let mut char_transform = Transform::identity();
         char_transform.rotate(Quat::from_rotation_y(std::f32::consts::PI));
-        commands.spawn()
-            .insert(Name::new("Enemy"))
-            .insert(Transform::identity())
-            .insert(GlobalTransform::identity())
+
+        commands.spawn_bundle(super::EnemyBundle::new(enemy_transform, spawn_event.speed))
             .insert(super::brain::BLine { to: player })
-            .insert(crate::arena::controllers::navigatable::Navigatable {
-                speed: spawn_event.speed,
-                ..Default::default()
-            })
-            .insert(super::EnemyRoot)
-            .insert_bundle(RigidBodyBundle {
-                body_type: RigidBodyType::Dynamic,
-                position: (spawn_event.translation).into(),
-                mass_properties: RigidBodyMassPropsFlags::ROTATION_LOCKED.into(),
-                ..Default::default()
-            })
-            .insert_bundle(ColliderBundle {
-                shape: ColliderShape::cuboid(0.25, 1.0, 0.25),
-                position: Vec3::new(0.0, 1.0, 0.0).into(),
-                mass_properties: ColliderMassProps::Density(1.0),
-                flags: ActiveEvents::CONTACT_EVENTS.into(),
-                ..Default::default()
-            })
-            .insert(HiltDebugCollider {
-                color: Color::RED
-            })
-            .insert(RigidBodyPositionSync::Discrete)
-            .insert(HiltDebugPosition::default())
             .with_children(|parent| {
-                parent.spawn()
-                    .insert(Name::new("Character"))
-                    .insert(char_transform)
-                    .insert(GlobalTransform::default())
-                    .with_children(|parent| {
-                        parent.spawn_scene(assets.load(asset_path.as_str()));
-                    });
+                let character_handle = assets.load(character_path.as_str());
+                CharacterBundle::spawn(parent, char_transform, character_handle);
             });
     }
 }

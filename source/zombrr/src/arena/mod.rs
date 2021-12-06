@@ -1,5 +1,6 @@
 mod systems;
 mod controllers;
+pub mod bundles;
 
 mod resources;
 pub use self::resources::{ArenaResources, ArenaMapData};

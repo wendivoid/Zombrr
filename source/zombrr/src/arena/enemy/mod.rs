@@ -5,6 +5,9 @@ pub mod brain;
 mod plugin;
 pub use self::plugin::EnemyPlugin;
 
+mod bundle;
+pub use self::bundle::EnemyBundle;
+
 use zombrr_core::packages::CharacterRef;
 
 pub struct SpawnEnemy {
