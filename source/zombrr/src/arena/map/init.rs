@@ -67,7 +67,9 @@ pub fn init_map_objects(
                             }
                         }
                     } else {
-                        commands.entity(entity).insert(super::ArenaGltfMapObject);
+                        commands.entity(entity).insert_bundle((
+                            super::ArenaGltfMapObject,
+                        ));
                     }
                 });
                 progress = 1;

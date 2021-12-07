@@ -55,6 +55,7 @@ pub fn spawn_arena(
             material: sky_materials.add(preset_to_material(&map.meta.sky.preset)),
             ..Default::default()
         })
+        .insert(Name::new("Arena Map SkyBox"))
         .insert(super::ArenaMapSkyBox);
     } else {
         error!("Map not found: {:?}", options.map);

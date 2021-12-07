@@ -1,15 +1,16 @@
 use bevy::prelude::*;
-use zombrr_core::ZombrrPackages;
+use zombrr_core::{ZombrrPackages, ArenaOptions};
 
 use crate::arena::SpawnEnemy;
-use crate::arena::bundles::CharacterBundle;
+use crate::arena::controllers::character::SpawnCharacter;
 
 pub fn spawn_enemy(
     mut commands: Commands,
-    assets: Res<AssetServer>,
+    options: Res<ArenaOptions>,
     packages: Res<ZombrrPackages>,
-    players: Query<Entity, With<crate::arena::player::PlayerRoot>>,
     mut events: EventReader<SpawnEnemy>,
+    mut spawn_characters: EventWriter<SpawnCharacter>,
+    players: Query<Entity, With<crate::arena::player::PlayerRoot>>,
 ) {
     for spawn_event in events.iter() {
         let player = players.single().unwrap();
@@ -25,11 +26,12 @@ pub fn spawn_enemy(
         let mut char_transform = Transform::identity();
         char_transform.rotate(Quat::from_rotation_y(std::f32::consts::PI));
 
-        commands.spawn_bundle(super::EnemyBundle::new(enemy_transform, spawn_event.speed))
+        let entity = commands.spawn_bundle(super::EnemyBundle::new(enemy_transform, spawn_event.speed))
             .insert(super::brain::BLine { to: player })
-            .with_children(|parent| {
-                let character_handle = assets.load(character_path.as_str());
-                CharacterBundle::spawn(parent, char_transform, character_handle);
-            });
+            .id();
+        spawn_characters.send(SpawnCharacter {
+            parent: entity,
+            character: options.player.character.clone()
+        });
     }
 }
