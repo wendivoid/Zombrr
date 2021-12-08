@@ -40,11 +40,14 @@ pub fn keyboard_input(
 
 pub fn mouse_button_input(
     btns: Res<Input<MouseButton>>,
+    egui: Res<bevy_devtools::bevy_egui::EguiContext>,
     mut events: EventWriter<FireWeapon>,
     players: Query<Entity, With<PlayerRoot>>,
     weapons: Query<Entity, With<WeaponRoot>>,
 ) {
-    if btns.just_pressed(MouseButton::Left) {
+    if btns.just_pressed(MouseButton::Left) &&
+        !egui.ctx().wants_pointer_input()
+    {
         let assailant = players.single().unwrap();
         let weapon = weapons.single().unwrap();
 
