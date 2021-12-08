@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 use bevy_loading::Progress;
-use zombrr_core::ArenaOptions;
+use zombrr_core::{ArenaOptions, ZombrrObject};
 
 use super::cameras::PlayerCamerasBundle;
 use crate::arena::controllers::weapon::SpawnWeapon;
@@ -19,6 +19,7 @@ pub fn init_player(
                 .with_children(|parent| {
                     PlayerCamerasBundle::spawn(parent, Transform::from_xyz(0.0, 2.0, 0.7));
                 })
+                .insert(ZombrrObject::Player)
                 .id();
             spawn_characters.send(SpawnCharacter {
                 parent: entity,

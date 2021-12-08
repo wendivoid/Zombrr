@@ -14,7 +14,17 @@ pub struct PlayerOptions {
     pub display: DisplayRef
 }
 
-#[derive(Default, Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone)]
 pub struct EnemyOptions {
+    pub speed: f32,
     pub character: CharacterRef
+}
+
+impl Default for EnemyOptions {
+    fn default() -> EnemyOptions {
+        EnemyOptions {
+            speed: 0.2,
+            character: Default::default()
+        }
+    }
 }

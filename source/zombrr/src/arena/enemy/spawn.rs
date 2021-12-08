@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use zombrr_core::{ZombrrPackages, ArenaOptions};
+use zombrr_core::{ZombrrPackages, ArenaOptions, ZombrrObject};
 
 use crate::arena::SpawnEnemy;
 use crate::arena::controllers::character::SpawnCharacter;
@@ -28,6 +28,7 @@ pub fn spawn_enemy(
 
         let entity = commands.spawn_bundle(super::EnemyBundle::new(enemy_transform, spawn_event.speed))
             .insert(super::brain::BLine { to: player })
+            .insert(ZombrrObject::Enemy)
             .id();
         spawn_characters.send(SpawnCharacter {
             parent: entity,

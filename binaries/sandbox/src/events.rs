@@ -3,3 +3,7 @@ pub struct ChangeMap {
     pub package: String,
     pub name: String
 }
+
+pub struct ChangeMode {
+    pub name: String,
+}
