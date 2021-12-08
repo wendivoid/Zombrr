@@ -6,7 +6,8 @@ pub fn handle_fire_input(
     weapon: Query<Entity, With<super::WeaponRoot>>
 ) {
     if mouse.just_pressed(MouseButton::Left) {
-        let weapon = weapon.single().unwrap();
-        events.send(super::FireWeapon(weapon));
+        if let Ok(weapon) = weapon.single() {
+            events.send(super::FireWeapon(weapon));
+        }
     }
 }

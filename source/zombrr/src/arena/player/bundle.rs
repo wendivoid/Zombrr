@@ -5,10 +5,12 @@ use bevy_rapier3d::prelude::*;
 use crate::arena::controllers::navigatable::{
     Navigatable, KeyboardInput, MouseInput
 };
+use crate::arena::controllers::damage::Damage;
 
 #[derive(Bundle)]
 pub struct PlayerBundle {
     pub name: Name,
+    pub health: Damage,
     pub root: super::PlayerRoot,
     pub transform: Transform,
     pub global_transform: GlobalTransform,
@@ -30,6 +32,7 @@ impl From<Transform> for PlayerBundle {
             name: Name::new("Player"),
             root: super::PlayerRoot,
             transform,
+            health: Damage::default(),
             global_transform: GlobalTransform::identity(),
             navigatable: Navigatable::default(),
             keyboard: KeyboardInput,

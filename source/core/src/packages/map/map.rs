@@ -1,4 +1,3 @@
-use std::fmt;
 use std::fs::File;
 use std::path::{PathBuf, Path};
 

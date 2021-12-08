@@ -17,4 +17,3 @@ bevy_devtools = { git = "https://github.com/Bytebuddha/bevy_devtools", features 
 bevy_hilt = { git = "https://github.com/Bytebuddha/bevy_hilt", features = ["3d"] }
 bevy_sky = { path = "../../crates/bevy_sky" }
 bevy_loading = "0.1.1"
-bevy_prototype_debug_lines = "0.3.2"

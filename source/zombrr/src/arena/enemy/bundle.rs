@@ -3,10 +3,12 @@ use bevy_hilt::prelude::*;
 use bevy_rapier3d::prelude::*;
 
 use crate::arena::controllers::navigatable::Navigatable;
+use crate::arena::controllers::damage::Damage;
 
 #[derive(Bundle)]
 pub struct EnemyBundle {
     pub name: Name,
+    pub health: Damage,
     pub root: super::EnemyRoot,
     pub transform: Transform,
     pub global_transform: GlobalTransform,
@@ -24,6 +26,7 @@ impl EnemyBundle {
     pub fn new(transform: Transform, speed: f32) -> EnemyBundle {
         EnemyBundle {
             name: Name::new("Enemy"),
+            health: Damage::default(),
             root: super::EnemyRoot,
             transform,
             global_transform: GlobalTransform::identity(),

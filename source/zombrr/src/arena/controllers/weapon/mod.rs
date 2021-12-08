@@ -1,9 +1,11 @@
 use bevy::prelude::*;
 use bevy::scene::InstanceId;
-use zombrr_core::packages::WeaponRef;
+use zombrr_core::packages::{WeaponRef, WeaponMeta};
 
 mod fire;
 mod input;
+mod spawn;
+mod finalize;
 mod plugin;
 pub use self::plugin::WeaponPlugin;
 mod bundle;
@@ -11,7 +13,7 @@ pub use self::bundle::WeaponBundle;
 
 pub struct WeaponRoot;
 pub struct WeaponEntity;
-pub struct UnloadedWeapon(pub InstanceId, Magazine);
+pub struct UnloadedWeapon(pub InstanceId, WeaponMeta);
 
 #[derive(Debug, Reflect, Copy, Clone)]
 pub struct Magazine {

@@ -2,6 +2,9 @@ use bevy::prelude::*;
 use bevy::scene::InstanceId;
 use zombrr_core::packages::CharacterRef;
 
+mod spawn;
+mod finalize;
+
 mod plugin;
 pub use self::plugin::CharacterPlugin;
 
