@@ -2,7 +2,7 @@ use bevy::prelude::*;
 use zombrr_core::{ ZombrrState, ArenaState };
 
 mod input;
-pub use self::input::{keyboard_input, mouse_input, MouseInput, KeyboardInput};
+pub use self::input::{keyboard_input, mouse_input, mouse_button_input, MouseInput, KeyboardInput};
 
 mod collision;
 pub use self::collision::navigatable_collision;
@@ -22,6 +22,7 @@ impl Plugin for NavigatablePlugin {
                 .with_system(navigatable_move.system())
                 .with_system(keyboard_input.system())
                 .with_system(mouse_input.system())
+                .with_system(mouse_button_input.system())
                 .with_system(navigatable_collision.system())
         );
     }

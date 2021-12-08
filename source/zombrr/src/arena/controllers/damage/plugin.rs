@@ -22,7 +22,7 @@ impl Plugin for DamagePlugin {
 }
 
 fn add_empty_killcounts(
-    res: ResMut<KillCount>,
+    mut res: ResMut<KillCount>,
     query: Query<Entity, With<PlayerRoot>>
 ) {
     for entity in query.iter() {

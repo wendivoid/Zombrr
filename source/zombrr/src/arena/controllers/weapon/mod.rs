@@ -3,7 +3,6 @@ use bevy::scene::InstanceId;
 use zombrr_core::packages::{WeaponRef, WeaponMeta};
 
 mod fire;
-mod input;
 mod spawn;
 mod finalize;
 mod plugin;
@@ -39,4 +38,7 @@ pub struct SpawnWeapon {
 }
 
 
-pub struct FireWeapon(pub Entity);
+pub struct FireWeapon {
+    pub weapon: Entity,
+    pub assailant: Entity,
+}

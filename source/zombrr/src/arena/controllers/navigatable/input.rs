@@ -2,6 +2,8 @@ use bevy::prelude::*;
 use bevy::input::mouse::MouseMotion;
 
 use super::Navigatable;
+use crate::arena::player::PlayerRoot;
+use crate::arena::controllers::weapon::{FireWeapon, WeaponRoot};
 
 pub struct KeyboardInput;
 pub struct MouseInput { pub sensitivity: f32, pub disabled: bool }
@@ -33,6 +35,22 @@ pub fn keyboard_input(
         if navigatable.on_solid && keys.just_pressed(KeyCode::Space) {
             navigatable.velocity.y += 4.0;
         }
+    }
+}
+
+pub fn mouse_button_input(
+    btns: Res<Input<MouseButton>>,
+    mut events: EventWriter<FireWeapon>,
+    players: Query<Entity, With<PlayerRoot>>,
+    weapons: Query<Entity, With<WeaponRoot>>,
+) {
+    if btns.just_pressed(MouseButton::Left) {
+        let assailant = players.single().unwrap();
+        let weapon = weapons.single().unwrap();
+
+        events.send(FireWeapon {
+            assailant, weapon
+        });
     }
 }
 

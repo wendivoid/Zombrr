@@ -13,9 +13,9 @@ pub fn handle_fire_weapon(
     weapon_entities: Query<(&Name, &GlobalTransform), With<WeaponEntity>>,
     mut weapons: Query<(&mut Magazine, &Children, &WeaponMeta), With<WeaponRoot>>
 ) {
-    for FireWeapon(entity) in events.iter() {
-        if let Ok((mut magazine, children, weapon)) = weapons.get_mut(*entity) {
-            debug!("Firing Weapon: Entity({:?})", *entity);
+    for FireWeapon { weapon, assailant } in events.iter() {
+        if let Ok((mut magazine, children, weapon_meta)) = weapons.get_mut(*weapon) {
+            debug!("Firing Weapon: Entity({:?})", *weapon);
             if magazine.fire() {
                 let mut eyepoint = None;
                 let mut shotpoint = None;
@@ -41,8 +41,9 @@ pub fn handle_fire_weapon(
                          &colliders, &ray, 1000.0, true, InteractionGroups::all(), None
                     ) {
                         health_events.send(SustainedDamage {
-                            value: weapon.damage,
-                            entity: handle.entity()
+                            value: weapon_meta.damage,
+                            target: handle.entity(),
+                            assailant: *assailant
                         });
                     }
                 }
