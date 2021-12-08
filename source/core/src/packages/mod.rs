@@ -1,6 +1,9 @@
 mod weapons;
 pub use self::weapons::{Weapon, WeaponMeta, WeaponRef};
 
+mod displays;
+pub use self::displays::{Display, DisplayMeta, DisplayRef};
+
 mod characters;
 pub use self::characters::{Character, CharacterMeta, CharacterRef};
 
@@ -71,6 +74,23 @@ impl ZombrrPackages {
                         for p_weapon in &package.weapons {
                             if p_weapon.name == weapon.name {
                                 return Some(p_weapon);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        None
+    }
+
+    pub fn get_display(&self, display: &DisplayRef) -> Option<&Display> {
+        for namespace in &self.0 {
+            if namespace.name == display.namespace {
+                for package in &namespace.packages {
+                    if package.name == display.package {
+                        for p_display in &package.displays {
+                            if p_display.name == display.name {
+                                return Some(p_display);
                             }
                         }
                     }

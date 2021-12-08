@@ -5,7 +5,6 @@ edition = "2021"
 
 [dependencies.bevy]
 version = "0.5.0"
-default-features = false
 
 [dependencies]
 chrono = "0.4.19"

@@ -1,4 +1,4 @@
-use crate::packages::{CharacterRef, MapRef, WeaponRef};
+use crate::packages::{CharacterRef, MapRef, WeaponRef, DisplayRef};
 
 #[derive(Default, Debug, PartialEq, Clone)]
 pub struct ArenaOptions {
@@ -10,7 +10,8 @@ pub struct ArenaOptions {
 #[derive(Default, Debug, PartialEq, Clone)]
 pub struct PlayerOptions {
     pub character: CharacterRef,
-    pub weapon: WeaponRef
+    pub weapon: WeaponRef,
+    pub display: DisplayRef
 }
 
 #[derive(Default, Debug, PartialEq, Clone)]

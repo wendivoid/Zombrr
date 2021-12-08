@@ -3,7 +3,7 @@ use serde::{ Serialize, Deserialize };
 use std::fs::{read_dir, File};
 use std::path::Path;
 
-use super::{Map, Character, Weapon};
+use super::{Map, Character, Weapon, Display};
 
 #[derive(Debug, PartialEq, Clone)]
 pub struct Package {
@@ -11,7 +11,8 @@ pub struct Package {
     pub meta: Option<PackageMeta>,
     pub maps: Vec<Map>,
     pub characters: Vec<Character>,
-    pub weapons: Vec<Weapon>
+    pub weapons: Vec<Weapon>,
+    pub displays: Vec<Display>
 }
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
@@ -28,7 +29,8 @@ impl Package {
             meta: Self::load_meta(&path)?,
             maps: Self::load_maps(&path)?,
             characters: Self::load_characters(&path)?,
-            weapons: Self::load_weapons(path)?
+            weapons: Self::load_weapons(&path)?,
+            displays: Self::load_displays(path)?
         })
     }
 
@@ -67,6 +69,19 @@ impl Package {
             }
         }
         Ok(weapons)
+    }
+
+    pub fn load_displays<P: AsRef<Path>>(path: P) -> Result<Vec<Display>, ron::Error> {
+        let mut path = path.as_ref().to_path_buf();
+        path.push("displays");
+        let mut displays = vec![];
+        if path.exists() {
+            for entry in read_dir(&path)? {
+                let entry = entry?;
+                displays.push(Display::load(entry.path())?);
+            }
+        }
+        Ok(displays)
     }
 
     pub fn load_characters<P: AsRef<Path>>(path: P) -> Result<Vec<Character>, ron::Error> {

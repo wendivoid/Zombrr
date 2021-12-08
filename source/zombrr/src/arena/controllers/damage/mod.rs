@@ -12,4 +12,4 @@ mod plugin;
 pub use self::plugin::DamagePlugin;
 
 #[derive(Default)]
-pub struct KillCount(HashMap<Entity, usize>);
+pub struct KillCount(pub HashMap<Entity, usize>);

@@ -1,0 +1,829 @@
+[
+  (
+    entity: 2,
+    components: [
+      {
+        "type": "bevy_transform::components::transform::Transform",
+        "struct": {
+          "translation": {
+            "type": "glam::vec3::Vec3",
+            "value": (-458.5, 255.0, 0.001),
+          },
+          "rotation": {
+            "type": "glam::quat::Quat",
+            "value": (0.0, 0.0, 0.0, 1.0),
+          },
+          "scale": {
+            "type": "glam::vec3::Vec3",
+            "value": (1.0, 1.0, 1.0),
+          },
+        },
+      },
+      {
+        "type": "bevy_transform::components::global_transform::GlobalTransform",
+        "struct": {
+          "translation": {
+            "type": "glam::vec3::Vec3",
+            "value": (181.5, 615.0, 0.002),
+          },
+          "rotation": {
+            "type": "glam::quat::Quat",
+            "value": (0.0, 0.0, 0.0, 1.0),
+          },
+          "scale": {
+            "type": "glam::vec3::Vec3",
+            "value": (1.0, 1.0, 1.0),
+          },
+        },
+      },
+      {
+          "type": "zombrr::arena::display::TextField",
+          "struct": {}
+      },
+      {
+          "type": "zombrr::arena::display::KillCountText",
+          "struct": {}
+      },
+      {
+        "type": "bevy_ui::ui_node::Node",
+        "struct": {
+          "size": {
+            "type": "glam::vec2::Vec2",
+            "value": (333.0, 200.0),
+          },
+        },
+      },
+      {
+        "type": "bevy_ui::ui_node::Style",
+        "struct": {
+          "display": {
+            "type": "bevy_ui::ui_node::Display",
+            "value": Flex,
+          },
+          "position_type": {
+            "type": "bevy_ui::ui_node::PositionType",
+            "value": Absolute,
+          },
+          "direction": {
+            "type": "bevy_ui::ui_node::Direction",
+            "value": Inherit,
+          },
+          "flex_direction": {
+            "type": "bevy_ui::ui_node::FlexDirection",
+            "value": Row,
+          },
+          "flex_wrap": {
+            "type": "bevy_ui::ui_node::FlexWrap",
+            "value": NoWrap,
+          },
+          "align_items": {
+            "type": "bevy_ui::ui_node::AlignItems",
+            "value": Stretch,
+          },
+          "align_self": {
+            "type": "bevy_ui::ui_node::AlignSelf",
+            "value": FlexEnd,
+          },
+          "align_content": {
+            "type": "bevy_ui::ui_node::AlignContent",
+            "value": Stretch,
+          },
+          "justify_content": {
+            "type": "bevy_ui::ui_node::JustifyContent",
+            "value": FlexStart,
+          },
+          "position": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Px(15.0),
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Px(5.0),
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "margin": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "padding": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "border": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "flex_grow": {
+            "type": "f32",
+            "value": 0.0,
+          },
+          "flex_shrink": {
+            "type": "f32",
+            "value": 1.0,
+          },
+          "flex_basis": {
+            "type": "bevy_ui::ui_node::Val",
+            "value": Auto,
+          },
+          "size": {
+            "type": "bevy_math::geometry::Size<bevy_ui::ui_node::Val>",
+            "struct": {
+              "width": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+              "height": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+            },
+          },
+          "min_size": {
+            "type": "bevy_math::geometry::Size<bevy_ui::ui_node::Val>",
+            "struct": {
+              "width": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+              "height": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+            },
+          },
+          "max_size": {
+            "type": "bevy_math::geometry::Size<bevy_ui::ui_node::Val>",
+            "struct": {
+              "width": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+              "height": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+            },
+          },
+          "aspect_ratio": {
+            "type": "core::option::Option<f32>",
+            "value": None,
+          },
+        },
+      },
+      {
+        "type": "bevy_render::draw::Draw",
+        "struct": {},
+      },
+      {
+        "type": "bevy_render::draw::Visible",
+        "struct": {
+          "is_visible": {
+            "type": "bool",
+            "value": true,
+          },
+          "is_transparent": {
+            "type": "bool",
+            "value": true,
+          },
+        },
+      },
+      {
+        "type": "bevy_transform::components::parent::Parent",
+        "tuple_struct": [
+          {
+            "type": "bevy_ecs::entity::Entity",
+            "value": 1,
+          },
+        ],
+      },
+      {
+        "type": "bevy_transform::components::parent::PreviousParent",
+        "tuple_struct": [
+          {
+            "type": "bevy_ecs::entity::Entity",
+            "value": 1,
+          },
+        ],
+      },
+    ],
+  ),
+  (
+    entity: 3,
+    components: [
+      {
+        "type": "bevy_transform::components::transform::Transform",
+        "struct": {
+          "translation": {
+            "type": "glam::vec3::Vec3",
+            "value": (458.5, -340.0, 0.0019999999),
+          },
+          "rotation": {
+            "type": "glam::quat::Quat",
+            "value": (0.0, 0.0, 0.0, 1.0),
+          },
+          "scale": {
+            "type": "glam::vec3::Vec3",
+            "value": (1.0, 1.0, 1.0),
+          },
+        },
+      },
+      {
+          "type": "zombrr::arena::display::TextField",
+          "struct": {}
+      },
+      {
+          "type": "zombrr::arena::display::FpsText",
+          "struct": {}
+      },
+      {
+        "type": "bevy_transform::components::global_transform::GlobalTransform",
+        "struct": {
+          "translation": {
+            "type": "glam::vec3::Vec3",
+            "value": (1098.5, 20.0, 0.003),
+          },
+          "rotation": {
+            "type": "glam::quat::Quat",
+            "value": (0.0, 0.0, 0.0, 1.0),
+          },
+          "scale": {
+            "type": "glam::vec3::Vec3",
+            "value": (1.0, 1.0, 1.0),
+          },
+        },
+      },
+      {
+        "type": "bevy_ui::ui_node::Node",
+        "struct": {
+          "size": {
+            "type": "glam::vec2::Vec2",
+            "value": (333.0, 30.0),
+          },
+        },
+      },
+      {
+        "type": "bevy_ui::ui_node::Style",
+        "struct": {
+          "display": {
+            "type": "bevy_ui::ui_node::Display",
+            "value": Flex,
+          },
+          "position_type": {
+            "type": "bevy_ui::ui_node::PositionType",
+            "value": Absolute,
+          },
+          "direction": {
+            "type": "bevy_ui::ui_node::Direction",
+            "value": Inherit,
+          },
+          "flex_direction": {
+            "type": "bevy_ui::ui_node::FlexDirection",
+            "value": Row,
+          },
+          "flex_wrap": {
+            "type": "bevy_ui::ui_node::FlexWrap",
+            "value": NoWrap,
+          },
+          "align_items": {
+            "type": "bevy_ui::ui_node::AlignItems",
+            "value": Stretch,
+          },
+          "align_self": {
+            "type": "bevy_ui::ui_node::AlignSelf",
+            "value": FlexEnd,
+          },
+          "align_content": {
+            "type": "bevy_ui::ui_node::AlignContent",
+            "value": Stretch,
+          },
+          "justify_content": {
+            "type": "bevy_ui::ui_node::JustifyContent",
+            "value": FlexStart,
+          },
+          "position": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Px(15.0),
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Px(5.0),
+              },
+            },
+          },
+          "margin": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "padding": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "border": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "flex_grow": {
+            "type": "f32",
+            "value": 0.0,
+          },
+          "flex_shrink": {
+            "type": "f32",
+            "value": 1.0,
+          },
+          "flex_basis": {
+            "type": "bevy_ui::ui_node::Val",
+            "value": Auto,
+          },
+          "size": {
+            "type": "bevy_math::geometry::Size<bevy_ui::ui_node::Val>",
+            "struct": {
+              "width": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+              "height": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+            },
+          },
+          "min_size": {
+            "type": "bevy_math::geometry::Size<bevy_ui::ui_node::Val>",
+            "struct": {
+              "width": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+              "height": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+            },
+          },
+          "max_size": {
+            "type": "bevy_math::geometry::Size<bevy_ui::ui_node::Val>",
+            "struct": {
+              "width": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+              "height": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+            },
+          },
+          "aspect_ratio": {
+            "type": "core::option::Option<f32>",
+            "value": None,
+          },
+        },
+      },
+      {
+        "type": "bevy_render::draw::Draw",
+        "struct": {},
+      },
+      {
+        "type": "bevy_render::draw::Visible",
+        "struct": {
+          "is_visible": {
+            "type": "bool",
+            "value": true,
+          },
+          "is_transparent": {
+            "type": "bool",
+            "value": true,
+          },
+        },
+      },
+      {
+        "type": "bevy_transform::components::parent::Parent",
+        "tuple_struct": [
+          {
+            "type": "bevy_ecs::entity::Entity",
+            "value": 1,
+          },
+        ],
+      },
+      {
+        "type": "bevy_transform::components::parent::PreviousParent",
+        "tuple_struct": [
+          {
+            "type": "bevy_ecs::entity::Entity",
+            "value": 1,
+          },
+        ],
+      },
+    ],
+  ),
+  (
+    entity: 1,
+    components: [
+      {
+        "type": "bevy_transform::components::transform::Transform",
+        "struct": {
+          "translation": {
+            "type": "glam::vec3::Vec3",
+            "value": (640.0, 360.0, 0.001),
+          },
+          "rotation": {
+            "type": "glam::quat::Quat",
+            "value": (0.0, 0.0, 0.0, 1.0),
+          },
+          "scale": {
+            "type": "glam::vec3::Vec3",
+            "value": (1.0, 1.0, 1.0),
+          },
+        },
+      },
+      {
+        "type": "bevy_transform::components::global_transform::GlobalTransform",
+        "struct": {
+          "translation": {
+            "type": "glam::vec3::Vec3",
+            "value": (640.0, 360.0, 0.001),
+          },
+          "rotation": {
+            "type": "glam::quat::Quat",
+            "value": (0.0, 0.0, 0.0, 1.0),
+          },
+          "scale": {
+            "type": "glam::vec3::Vec3",
+            "value": (1.0, 1.0, 1.0),
+          },
+        },
+      },
+      {
+        "type": "bevy_ui::ui_node::Node",
+        "struct": {
+          "size": {
+            "type": "glam::vec2::Vec2",
+            "value": (1280.0, 720.0),
+          },
+        },
+      },
+      {
+        "type": "bevy_ui::ui_node::Style",
+        "struct": {
+          "display": {
+            "type": "bevy_ui::ui_node::Display",
+            "value": Flex,
+          },
+          "position_type": {
+            "type": "bevy_ui::ui_node::PositionType",
+            "value": Relative,
+          },
+          "direction": {
+            "type": "bevy_ui::ui_node::Direction",
+            "value": Inherit,
+          },
+          "flex_direction": {
+            "type": "bevy_ui::ui_node::FlexDirection",
+            "value": Row,
+          },
+          "flex_wrap": {
+            "type": "bevy_ui::ui_node::FlexWrap",
+            "value": NoWrap,
+          },
+          "align_items": {
+            "type": "bevy_ui::ui_node::AlignItems",
+            "value": Stretch,
+          },
+          "align_self": {
+            "type": "bevy_ui::ui_node::AlignSelf",
+            "value": Auto,
+          },
+          "align_content": {
+            "type": "bevy_ui::ui_node::AlignContent",
+            "value": Stretch,
+          },
+          "justify_content": {
+            "type": "bevy_ui::ui_node::JustifyContent",
+            "value": FlexStart,
+          },
+          "position": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "margin": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "padding": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "border": {
+            "type": "bevy_math::geometry::Rect<bevy_ui::ui_node::Val>",
+            "struct": {
+              "left": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "right": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "top": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+              "bottom": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Undefined,
+              },
+            },
+          },
+          "flex_grow": {
+            "type": "f32",
+            "value": 0.0,
+          },
+          "flex_shrink": {
+            "type": "f32",
+            "value": 1.0,
+          },
+          "flex_basis": {
+            "type": "bevy_ui::ui_node::Val",
+            "value": Auto,
+          },
+          "size": {
+            "type": "bevy_math::geometry::Size<bevy_ui::ui_node::Val>",
+            "struct": {
+              "width": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Percent(100.0),
+              },
+              "height": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Percent(100.0),
+              },
+            },
+          },
+          "min_size": {
+            "type": "bevy_math::geometry::Size<bevy_ui::ui_node::Val>",
+            "struct": {
+              "width": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+              "height": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+            },
+          },
+          "max_size": {
+            "type": "bevy_math::geometry::Size<bevy_ui::ui_node::Val>",
+            "struct": {
+              "width": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+              "height": {
+                "type": "bevy_ui::ui_node::Val",
+                "value": Auto,
+              },
+            },
+          },
+          "aspect_ratio": {
+            "type": "core::option::Option<f32>",
+            "value": None,
+          },
+        },
+      },
+      {
+        "type": "bevy_asset::handle::Handle<bevy_render::mesh::mesh::Mesh>",
+        "struct": {
+          "id": {
+            "type": "bevy_asset::handle::HandleId",
+            "value": Id("8ecbac0f-f545-4473-ad43-e1f4243af51e", 14240461981130137526),
+          },
+        },
+      },
+      {
+        "type": "bevy_asset::handle::Handle<bevy_sprite::color_material::ColorMaterial>",
+        "struct": {
+          "id": {
+            "type": "bevy_asset::handle::HandleId",
+            "value": Id("506cff92-a9f3-4543-862d-6851c7fdfc99", 10023788475516415499),
+          },
+        },
+      },
+      {
+        "type": "bevy_render::draw::Draw",
+        "struct": {},
+      },
+      {
+        "type": "bevy_render::draw::Visible",
+        "struct": {
+          "is_visible": {
+            "type": "bool",
+            "value": true,
+          },
+          "is_transparent": {
+            "type": "bool",
+            "value": true,
+          },
+        },
+      },
+      {
+          "type": "zombrr::arena::display::DisplayRoot",
+          "struct": {}
+      },
+      {
+        "type": "bevy_transform::components::children::Children",
+        "tuple_struct": [
+          {
+            "type": "smallvec::SmallVec<[bevy_ecs::entity::Entity; 8]>",
+            "list": [
+              {
+                "type": "bevy_ecs::entity::Entity",
+                "value": 2,
+              },
+              {
+                "type": "bevy_ecs::entity::Entity",
+                "value": 3,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  ),
+]

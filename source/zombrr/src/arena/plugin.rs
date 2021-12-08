@@ -12,6 +12,7 @@ impl Plugin for ArenaPlugin {
             .add_plugin(super::MapPlugin)
             .add_plugin(super::PlayerPlugin)
             .add_plugin(super::EnemyPlugin)
+            .add_plugin(super::DisplayPlugin)
             .add_plugin(bevy_sky::SkyPlugin)
             .add_plugin(super::controllers::ArenaControllersPlugin)
             .add_plugin(bevy_loading::LoadingPlugin {

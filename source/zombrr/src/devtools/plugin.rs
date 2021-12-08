@@ -9,7 +9,6 @@ impl Plugin for DevToolsPlugin {
         app.add_plugin(bevy_devtools::DevToolsPlugin::<ZombrrState>::default())
             .add_plugin(bevy_hilt::HiltDebugPlugin)
             .devtools_setting(super::physics::settings())
-            .devtools_enabled()
             .devtools_setting(super::enemy::settings())
             .devtools_tool(super::enemy::spawn_enemy())
             .add_system(super::toggle::toggle.system())
