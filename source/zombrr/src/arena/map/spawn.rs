@@ -1,5 +1,5 @@
-use zombrr_core::{ArenaOptions, ZombrrPackages, packages::MapData};
-use zombrr_core::packages::{Color as AssetColor, SkyPreset};
+use zombrr_core::{ArenaOptions, ZombrrPackages};
+use zombrr_core::packages::{SkyPreset, MapData};
 use bevy::prelude::*;
 use bevy::pbr::AmbientLight;
 use chrono::{TimeZone, Utc};
@@ -39,7 +39,7 @@ pub fn spawn_arena(
             }
         }
         commands.insert_resource(AmbientLight {
-            color: zombrr_color_to_bevy_color(&map.meta.ambient_light.color),
+            color: crate::utils::zombrr_color_to_bevy(&map.meta.ambient_light.color),
             brightness: map.meta.ambient_light.brightness
         });
         commands.spawn_bundle(SkyBundle {
@@ -59,16 +59,6 @@ pub fn spawn_arena(
         .insert(super::ArenaMapSkyBox);
     } else {
         error!("Map not found: {:?}", options.map);
-    }
-}
-
-pub fn zombrr_color_to_bevy_color(core: &AssetColor) -> Color {
-    match core {
-        AssetColor::Rgb(data) => Color::rgb(data[0], data[1], data[2]),
-        AssetColor::RgbPre(data) => Color::rgb_u8(data[0], data[1], data[2]),
-        AssetColor::Rgba(data) => Color::rgba(data[0], data[1], data[2], data[3]),
-        AssetColor::RgbaPre(data) => Color::rgba_u8(data[0], data[1], data[2], data[3]),
-        AssetColor::Hex(data) => Color::hex(data).unwrap()
     }
 }
 

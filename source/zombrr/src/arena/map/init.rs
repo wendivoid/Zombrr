@@ -59,7 +59,7 @@ pub fn init_map_objects(
                                         Err(err) => warn!("Failed to deserialize extras field for node {}: {}", node_name, err),
                                         Ok(debug_color) => {
                                             builder.insert(bevy_hilt::prelude::HiltDebugCollider {
-                                                color: super::spawn::zombrr_color_to_bevy_color(&debug_color)
+                                                color: crate::utils::zombrr_color_to_bevy(&debug_color)
                                             });
                                         }
                                     }

@@ -1,6 +1,7 @@
 mod systems;
 mod devtools;
 pub mod arena;
+pub mod utils;
 
 mod plugin;
 pub use self::plugin::ZombrrPlugin;

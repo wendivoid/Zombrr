@@ -6,6 +6,7 @@ use zombrr_core::packages::WeaponMeta;
 use crate::arena::controllers::damage::SustainedDamage;
 
 pub fn handle_fire_weapon(
+    mut commands: Commands,
     mut events: EventReader<FireWeapon>,
     query_pipeline: Res<QueryPipeline>,
     colliders: QueryPipelineColliderComponentsQuery,
@@ -37,9 +38,15 @@ pub fn handle_fire_weapon(
                         (Vec3::from(shot.translation - eye.translation)).into()
                     );
                     let colliders = QueryPipelineColliderComponentsSet(&colliders);
-                    if let Some((handle, _)) = query_pipeline.cast_ray(
+                    if let Some((handle, normal)) = query_pipeline.cast_ray_and_get_normal(
                          &colliders, &ray, 1000.0, true, InteractionGroups::all(), None
                     ) {
+                        commands.spawn().insert(crate::arena::controllers::tracers::Tracer {
+                                length: 150,
+                                color: crate::utils::zombrr_color_to_bevy(&weapon_meta.tracer_color),
+                                point: shot.translation,
+                                target: ray.point_at(normal.toi).into()
+                            });
                         health_events.send(SustainedDamage {
                             value: weapon_meta.damage,
                             target: handle.entity(),
