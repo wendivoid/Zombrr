@@ -2,8 +2,8 @@ use bevy::prelude::*;
 use bevy::scene::InstanceId;
 use zombrr_core::packages::CharacterRef;
 
-mod spawn;
 mod finalize;
+mod spawn;
 
 mod plugin;
 pub use self::plugin::CharacterPlugin;
@@ -17,5 +17,5 @@ pub struct UnloadedCharacter(pub InstanceId);
 
 pub struct SpawnCharacter {
     pub parent: Entity,
-    pub character: CharacterRef
+    pub character: CharacterRef,
 }

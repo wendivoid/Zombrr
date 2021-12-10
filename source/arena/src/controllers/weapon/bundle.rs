@@ -9,7 +9,7 @@ pub struct WeaponBundle {
     pub magazine: Magazine,
     pub transform: Transform,
     pub global_transform: GlobalTransform,
-    pub root: super::WeaponRoot
+    pub root: super::WeaponRoot,
 }
 
 impl From<WeaponMeta> for WeaponBundle {
@@ -18,7 +18,7 @@ impl From<WeaponMeta> for WeaponBundle {
             magazine: Magazine {
                 count: weapon.magazine_count,
                 length: weapon.magazine_length,
-                used: 0
+                used: 0,
             },
             weapon,
             name: Name::new("Weapon"),

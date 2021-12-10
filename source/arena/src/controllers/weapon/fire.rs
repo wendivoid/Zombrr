@@ -2,8 +2,8 @@ use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
 use super::*;
-use zombrr_core::packages::WeaponMeta;
 use crate::controllers::damage::SustainedDamage;
+use zombrr_core::packages::WeaponMeta;
 
 pub fn handle_fire_weapon(
     mut commands: Commands,
@@ -12,7 +12,7 @@ pub fn handle_fire_weapon(
     colliders: QueryPipelineColliderComponentsQuery,
     mut health_events: EventWriter<SustainedDamage>,
     weapon_entities: Query<(&Name, &GlobalTransform), With<WeaponEntity>>,
-    mut weapons: Query<(&mut Magazine, &Children, &WeaponMeta), With<WeaponRoot>>
+    mut weapons: Query<(&mut Magazine, &Children, &WeaponMeta), With<WeaponRoot>>,
 ) {
     for FireWeapon { weapon, assailant } in events.iter() {
         if let Ok((mut magazine, children, weapon_meta)) = weapons.get_mut(*weapon) {
@@ -35,22 +35,31 @@ pub fn handle_fire_weapon(
                     let shot = shotpoint.unwrap();
                     let ray = Ray::new(
                         shot.translation.into(),
-                        (Vec3::from(shot.translation - eye.translation)).into()
+                        (Vec3::from(shot.translation - eye.translation)).into(),
                     );
                     let colliders = QueryPipelineColliderComponentsSet(&colliders);
                     if let Some((handle, normal)) = query_pipeline.cast_ray_and_get_normal(
-                         &colliders, &ray, 1000.0, true, InteractionGroups::all(), None
+                        &colliders,
+                        &ray,
+                        1000.0,
+                        true,
+                        InteractionGroups::all(),
+                        None,
                     ) {
-                        commands.spawn().insert(crate::controllers::tracers::Tracer {
+                        commands
+                            .spawn()
+                            .insert(crate::controllers::tracers::Tracer {
                                 length: 150,
-                                color: crate::utils::zombrr_color_to_bevy(&weapon_meta.tracer_color),
+                                color: crate::utils::zombrr_color_to_bevy(
+                                    &weapon_meta.tracer_color,
+                                ),
                                 point: shot.translation,
-                                target: ray.point_at(normal.toi).into()
+                                target: ray.point_at(normal.toi).into(),
                             });
                         health_events.send(SustainedDamage {
                             value: weapon_meta.damage,
                             target: handle.entity(),
-                            assailant: *assailant
+                            assailant: *assailant,
                         });
                     }
                 }

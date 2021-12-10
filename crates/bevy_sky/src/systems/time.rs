@@ -1,13 +1,11 @@
 use bevy::prelude::*;
 
-use crate::{
-    Sun, SkyMaterial
-};
+use crate::{SkyMaterial, Sun};
 
 pub fn pass_time(
     time: Res<Time>,
     mut materials: ResMut<Assets<SkyMaterial>>,
-    mut query: Query<(&mut Sun, &Handle<SkyMaterial>)>
+    mut query: Query<(&mut Sun, &Handle<SkyMaterial>)>,
 ) {
     for (mut sun, handle) in query.iter_mut() {
         if sun.active {

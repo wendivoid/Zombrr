@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::path::{PathBuf, Path};
+use std::path::{Path, PathBuf};
 
 use super::DisplayMeta;
 
@@ -7,19 +7,25 @@ use super::DisplayMeta;
 pub struct Display {
     pub name: String,
     pub path: PathBuf,
-    pub meta: DisplayMeta
+    pub meta: DisplayMeta,
 }
 
 impl Display {
     pub fn load<P: AsRef<Path>>(environment_path: P) -> Result<Display, ron::Error> {
-        let name = environment_path.as_ref().file_name().unwrap().to_string_lossy().to_string();
+        let name = environment_path
+            .as_ref()
+            .file_name()
+            .unwrap()
+            .to_string_lossy()
+            .to_string();
         let path = environment_path.as_ref().to_path_buf();
         let environment = Display {
             name,
             path,
-            meta: Self::load_meta(&environment_path)?
+            meta: Self::load_meta(&environment_path)?,
         };
-        tracing::debug!("Loading Environment `{}`\n\t-> Name = {}\n\t-> Path = {:?}",
+        tracing::debug!(
+            "Loading Environment `{}`\n\t-> Name = {}\n\t-> Path = {:?}",
             environment.name,
             environment.name,
             environment.path,

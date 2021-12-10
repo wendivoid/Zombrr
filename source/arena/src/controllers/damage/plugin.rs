@@ -16,15 +16,12 @@ impl Plugin for DamagePlugin {
             .add_system(death::apply_death.system())
             .add_system_set(
                 SystemSet::on_enter(ZombrrState::Arena(ArenaState::Playing))
-                    .with_system(add_empty_killcounts.system())
+                    .with_system(add_empty_killcounts.system()),
             );
     }
 }
 
-fn add_empty_killcounts(
-    mut res: ResMut<KillCount>,
-    query: Query<Entity, With<PlayerRoot>>
-) {
+fn add_empty_killcounts(mut res: ResMut<KillCount>, query: Query<Entity, With<PlayerRoot>>) {
     for entity in query.iter() {
         res.0.insert(entity, 0);
     }

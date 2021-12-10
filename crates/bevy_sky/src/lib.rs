@@ -13,8 +13,8 @@ pub const DEFAULT_SUN_DISTANCE: f32 = 400000.0;
 pub const SETUP_SYSTEM: &str = "sky_setup";
 pub const RENDER_NODE: &str = "sky";
 
+use bevy::asset::{Handle, HandleUntyped};
 use bevy::reflect::TypeUuid;
-use bevy::asset::{HandleUntyped, Handle};
 use bevy::render::pipeline::PipelineDescriptor;
 
 pub const PIPELINE_HANDLE: HandleUntyped =

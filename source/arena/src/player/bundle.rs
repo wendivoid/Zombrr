@@ -2,10 +2,8 @@ use bevy::prelude::*;
 use bevy_hilt::prelude::*;
 use bevy_rapier3d::prelude::*;
 
-use crate::controllers::navigatable::{
-    Navigatable, KeyboardInput, MouseInput
-};
 use crate::controllers::damage::Damage;
+use crate::controllers::navigatable::{KeyboardInput, MouseInput, Navigatable};
 
 #[derive(Bundle)]
 pub struct PlayerBundle {
@@ -23,7 +21,7 @@ pub struct PlayerBundle {
     pub collider: ColliderBundle,
     pub position_sync: RigidBodyPositionSync,
     pub debug_collider: HiltDebugCollider,
-    pub debug_position: HiltDebugPosition
+    pub debug_position: HiltDebugPosition,
 }
 
 impl From<Transform> for PlayerBundle {
@@ -36,13 +34,13 @@ impl From<Transform> for PlayerBundle {
             global_transform: GlobalTransform::identity(),
             navigatable: Navigatable::default(),
             keyboard: KeyboardInput,
-            mouse: MouseInput { sensitivity: 10.0, disabled: false },
+            mouse: MouseInput {
+                sensitivity: 10.0,
+                disabled: false,
+            },
             rigid_body: RigidBodyBundle {
                 body_type: RigidBodyType::Dynamic,
-                position: (
-                    transform.translation,
-                    transform.rotation
-                ).into(),
+                position: (transform.translation, transform.rotation).into(),
                 mass_properties: RigidBodyMassPropsFlags::ROTATION_LOCKED.into(),
                 ..Default::default()
             },
@@ -55,7 +53,7 @@ impl From<Transform> for PlayerBundle {
             },
             position_sync: RigidBodyPositionSync::Discrete,
             debug_collider: HiltDebugCollider { color: Color::TEAL },
-            debug_position: Default::default()
+            debug_position: Default::default(),
         }
     }
 }

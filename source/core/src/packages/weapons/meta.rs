@@ -1,4 +1,4 @@
-use serde::{ Serialize, Deserialize };
+use serde::{Deserialize, Serialize};
 
 use crate::packages::Color;
 
@@ -17,12 +17,24 @@ pub struct WeaponMeta {
     #[serde(default = "scene_file")]
     pub scene: String,
     #[serde(default = "spaced_tilde")]
-    pub description: String
+    pub description: String,
 }
 
-fn scene_file() -> String { "scene.glb".into() }
-fn spaced_tilde() -> String { " ~ ".into() }
-fn magazine_length() -> usize { 10 }
-fn magazine_count() -> usize { 8 }
-fn default_damage() -> f32 { 50.0 }
-fn tracer_color() -> Color { Color::Rgba([0.80, 0.33, 0.0, 0.50]) }
+fn scene_file() -> String {
+    "scene.glb".into()
+}
+fn spaced_tilde() -> String {
+    " ~ ".into()
+}
+fn magazine_length() -> usize {
+    10
+}
+fn magazine_count() -> usize {
+    8
+}
+fn default_damage() -> f32 {
+    50.0
+}
+fn tracer_color() -> Color {
+    Color::Rgba([0.80, 0.33, 0.0, 0.50])
+}

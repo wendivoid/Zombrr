@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::path::{PathBuf, Path};
+use std::path::{Path, PathBuf};
 
 use super::CharacterMeta;
 
@@ -7,20 +7,25 @@ use super::CharacterMeta;
 pub struct Character {
     pub name: String,
     pub path: PathBuf,
-    pub meta: CharacterMeta
+    pub meta: CharacterMeta,
 }
 
 impl Character {
-
     pub fn load<P: AsRef<Path>>(character_path: P) -> Result<Character, ron::Error> {
-        let name = character_path.as_ref().file_name().unwrap().to_string_lossy().to_string();
+        let name = character_path
+            .as_ref()
+            .file_name()
+            .unwrap()
+            .to_string_lossy()
+            .to_string();
         let path = character_path.as_ref().to_path_buf();
         let character = Character {
             name,
             path,
-            meta: Self::load_meta(&character_path)?
+            meta: Self::load_meta(&character_path)?,
         };
-        tracing::debug!("Loading Character `{}`\n\t-> Name = {}\n\t-> Path = {:?}",
+        tracing::debug!(
+            "Loading Character `{}`\n\t-> Name = {}\n\t-> Path = {:?}",
             character.name,
             character.name,
             character.path

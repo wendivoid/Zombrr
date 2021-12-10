@@ -10,7 +10,9 @@ pub fn finalize_weapon_spawns(
         if let Some(entity_iter) = scene_spawner.iter_instance_entities(*scene) {
             entity_iter.for_each(|entity| {
                 if let Ok(entity) = entities.get(entity) {
-                    commands.entity(entity).insert_bundle(super::WeaponBundle::from(meta.clone()));
+                    commands
+                        .entity(entity)
+                        .insert_bundle(super::WeaponBundle::from(meta.clone()));
                     commands.entity(parent.0).push_children(&[entity]);
                 } else {
                     commands.entity(entity).insert(super::WeaponEntity);

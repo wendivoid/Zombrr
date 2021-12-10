@@ -1,9 +1,9 @@
 use bevy::{
     prelude::*,
     render::{
-        pipeline::{PipelineDescriptor, FrontFace},
+        pipeline::{FrontFace, PipelineDescriptor},
+        render_graph::{base, AssetRenderResourcesNode, RenderGraph},
         shader::{ShaderStage, ShaderStages},
-        render_graph::{ RenderGraph, AssetRenderResourcesNode, base }
     },
 };
 
@@ -24,7 +24,9 @@ pub fn setup(
         ))),
     });
     pipeline_descriptor.primitive.front_face = FrontFace::Cw;
-    commands.insert_resource(crate::PhysicalSkyPipeline(pipelines.set(crate::PIPELINE_HANDLE, pipeline_descriptor)));
+    commands.insert_resource(crate::PhysicalSkyPipeline(
+        pipelines.set(crate::PIPELINE_HANDLE, pipeline_descriptor),
+    ));
     // Add an AssetRenderResourcesNode to our Render Graph. This will bind
     // PhysicalSkyMaterial resources to our shader
     render_graph.add_system_node(

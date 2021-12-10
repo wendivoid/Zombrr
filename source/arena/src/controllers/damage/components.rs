@@ -4,12 +4,15 @@ use bevy::prelude::*;
 #[reflect(Component)]
 pub struct Damage {
     pub value: f32,
-    pub total: f32
+    pub total: f32,
 }
 
 impl Default for Damage {
     fn default() -> Damage {
-        Damage { value: 0.0, total: 100.0 }
+        Damage {
+            value: 0.0,
+            total: 100.0,
+        }
     }
 }
 

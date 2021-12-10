@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::path::{PathBuf, Path};
+use std::path::{Path, PathBuf};
 
 use super::WeaponMeta;
 
@@ -7,20 +7,25 @@ use super::WeaponMeta;
 pub struct Weapon {
     pub name: String,
     pub path: PathBuf,
-    pub meta: WeaponMeta
+    pub meta: WeaponMeta,
 }
 
 impl Weapon {
-
     pub fn load<P: AsRef<Path>>(weapon_path: P) -> Result<Weapon, ron::Error> {
-        let name = weapon_path.as_ref().file_name().unwrap().to_string_lossy().to_string();
+        let name = weapon_path
+            .as_ref()
+            .file_name()
+            .unwrap()
+            .to_string_lossy()
+            .to_string();
         let path = weapon_path.as_ref().to_path_buf();
         let weapon = Weapon {
             name,
             path,
-            meta: Self::load_meta(&weapon_path)?
+            meta: Self::load_meta(&weapon_path)?,
         };
-        tracing::debug!("Loading Weapon `{}`\n\t-> Name = {}\n\t-> Path = {:?}",
+        tracing::debug!(
+            "Loading Weapon `{}`\n\t-> Name = {}\n\t-> Path = {:?}",
             weapon.name,
             weapon.name,
             weapon.path,

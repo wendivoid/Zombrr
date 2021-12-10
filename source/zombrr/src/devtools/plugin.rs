@@ -1,6 +1,6 @@
 use bevy::prelude::*;
-use zombrr_core::ZombrrState;
 use bevy_devtools::DevToolsExt;
+use zombrr_core::ZombrrState;
 
 pub struct DevToolsPlugin;
 

@@ -1,11 +1,11 @@
 use bevy::prelude::*;
 use bevy_devtools::Settings;
-use zombrr_core::{ZombrrState, DebugState};
+use zombrr_core::{DebugState, ZombrrState};
 
 pub fn toggle(
     keys: Res<Input<KeyCode>>,
     mut settings: ResMut<Settings>,
-    mut state: ResMut<State<ZombrrState>>
+    mut state: ResMut<State<ZombrrState>>,
 ) {
     if keys.just_pressed(KeyCode::F11) {
         if let Some(setting) = settings.get_key_mut(&["devtools", "enabled"]) {

@@ -7,6 +7,6 @@ pub fn zombrr_color_to_bevy(core: &AssetColor) -> Color {
         AssetColor::RgbPre(data) => Color::rgb_u8(data[0], data[1], data[2]),
         AssetColor::Rgba(data) => Color::rgba(data[0], data[1], data[2], data[3]),
         AssetColor::RgbaPre(data) => Color::rgba_u8(data[0], data[1], data[2], data[3]),
-        AssetColor::Hex(data) => Color::hex(data).unwrap()
+        AssetColor::Hex(data) => Color::hex(data).unwrap(),
     }
 }

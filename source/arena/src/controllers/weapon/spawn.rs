@@ -6,7 +6,7 @@ pub fn handle_weapon_spawns(
     assets: Res<AssetServer>,
     packages: Res<ZombrrPackages>,
     mut scene_spawner: ResMut<SceneSpawner>,
-    mut events: EventReader<super::SpawnWeapon>
+    mut events: EventReader<super::SpawnWeapon>,
 ) {
     for super::SpawnWeapon { parent, weapon } in events.iter() {
         let weapon = packages.get_weapon(weapon).unwrap();
@@ -16,13 +16,13 @@ pub fn handle_weapon_spawns(
         let mut char_transform = Transform::identity();
         char_transform.rotate(Quat::from_rotation_y(std::f32::consts::PI));
 
-        commands.entity(*parent)
-            .insert_bundle((
-                char_transform,
-                GlobalTransform::identity(),
-            ))
+        commands
+            .entity(*parent)
+            .insert_bundle((char_transform, GlobalTransform::identity()))
             .with_children(|parent| {
-                parent.spawn().insert(super::UnloadedWeapon(instance_id, weapon.meta.clone()));
+                parent
+                    .spawn()
+                    .insert(super::UnloadedWeapon(instance_id, weapon.meta.clone()));
             });
     }
 }

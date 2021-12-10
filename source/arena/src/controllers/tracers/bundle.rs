@@ -1,13 +1,13 @@
 use bevy::prelude::*;
 use bevy::reflect::TypeUuid;
-use bevy::render::renderer::RenderResources;
 use bevy::render::render_graph::base::MainPass;
+use bevy::render::renderer::RenderResources;
 
 pub struct Tracer {
     pub length: u64,
     pub color: Color,
     pub point: Vec3,
-    pub target: Vec3
+    pub target: Vec3,
 }
 
 #[derive(Default)]

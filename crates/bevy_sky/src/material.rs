@@ -55,7 +55,7 @@ impl Default for SkyMaterial {
             sun_intensity_factor: 1000.0,
             sun_intensity_falloff_steepness: 1.5,
             tonemap_weighting: 9.50,
-            turbidity: 4.7
+            turbidity: 4.7,
         };
         sky.set_sun_position(
             std::f32::consts::PI * (0.4983 - 0.5),

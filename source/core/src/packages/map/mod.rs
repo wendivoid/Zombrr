@@ -1,5 +1,5 @@
 mod meta;
-pub use self::meta::{MapMeta, AmbientLight};
+pub use self::meta::{AmbientLight, MapMeta};
 
 mod map_ref;
 pub use self::map_ref::MapRef;

@@ -2,7 +2,9 @@ use bevy::prelude::*;
 
 use crate::controllers::navigatable::Navigatable;
 
-pub struct BLine { pub to: Entity }
+pub struct BLine {
+    pub to: Entity,
+}
 
 pub fn handle_bline(
     transforms: Query<&Transform>,
@@ -16,7 +18,10 @@ pub fn handle_bline(
 
         navigatable.yaw = current.rotation.to_axis_angle().1;
 
-        let forward = (navigatable.get_look_quat() * Vec3::new(0.0, 0.0, -1.0) * Vec3::new(1.0, 0.0, 1.0)).normalize().clamp_length_max(navigatable.speed);
+        let forward =
+            (navigatable.get_look_quat() * Vec3::new(0.0, 0.0, -1.0) * Vec3::new(1.0, 0.0, 1.0))
+                .normalize()
+                .clamp_length_max(navigatable.speed);
         navigatable.velocity += forward;
     }
 }

@@ -1,10 +1,9 @@
 [package]
-name = "zombrr-gltf"
+name = "zombrr-map"
 version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-# bevy
 bevy_app = "0.5.0"
 bevy_asset = "0.5.0"
 bevy_core = "0.5.0"
@@ -24,3 +23,10 @@ anyhow = "1.0"
 base64 = "0.13.0"
 serde_json = "1.0.67"
 serde = { version = "1.0.129", features = ["derive"] }
+
+bevy_rapier3d = { version = "0.10.0", features = ["serde-serialize"] }
+bevy_loading = "0.1.1"
+zombrr-core = { path = "../core" }
+bevy_sky = { path = "../../crates/bevy_sky" }
+bevy_hilt = { git = "https://github.com/Bytebuddha/bevy_hilt", features = ["3d"] }
+chrono = "0.4.19"

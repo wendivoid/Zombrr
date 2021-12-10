@@ -1,2 +1,2 @@
 mod bline;
-pub use self::bline::{BLine, handle_bline};
+pub use self::bline::{handle_bline, BLine};

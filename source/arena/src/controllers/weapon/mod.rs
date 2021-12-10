@@ -1,11 +1,11 @@
 use bevy::prelude::*;
 use bevy::scene::InstanceId;
-use zombrr_core::packages::{WeaponRef, WeaponMeta};
+use zombrr_core::packages::{WeaponMeta, WeaponRef};
 
-mod fire;
-mod spawn;
 mod finalize;
+mod fire;
 mod plugin;
+mod spawn;
 pub use self::plugin::WeaponPlugin;
 mod bundle;
 pub use self::bundle::WeaponBundle;
@@ -18,7 +18,7 @@ pub struct UnloadedWeapon(pub InstanceId, WeaponMeta);
 pub struct Magazine {
     pub count: usize,
     pub length: usize,
-    pub used: usize
+    pub used: usize,
 }
 
 impl Magazine {
@@ -34,9 +34,8 @@ impl Magazine {
 
 pub struct SpawnWeapon {
     pub parent: Entity,
-    pub weapon: WeaponRef
+    pub weapon: WeaponRef,
 }
-
 
 pub struct FireWeapon {
     pub weapon: Entity,

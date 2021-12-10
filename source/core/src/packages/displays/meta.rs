@@ -1,6 +1,6 @@
-use serde::{ Serialize, Deserialize };
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct DisplayMeta {
-    pub scene: String
+    pub scene: String,
 }

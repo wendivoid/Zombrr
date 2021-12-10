@@ -1,7 +1,7 @@
 use bevy::prelude::*;
-use bevy::render::render_graph::{base, RenderGraph, RenderResourcesNode};
-use bevy::render::shader::{ShaderStages, ShaderStage};
 use bevy::render::pipeline::PipelineDescriptor;
+use bevy::render::render_graph::{base, RenderGraph, RenderResourcesNode};
+use bevy::render::shader::{ShaderStage, ShaderStages};
 
 use super::TracerData;
 
@@ -13,14 +13,17 @@ pub fn setup_tracer_graphics(
 ) {
     // Create a new shader pipeline.
     let pipeline_handle = pipelines.add(PipelineDescriptor::default_config(ShaderStages {
-        vertex: shaders.add(Shader::from_glsl(ShaderStage::Vertex, super::shaders::VERTEX_SHADER)),
-        fragment: Some(shaders.add(Shader::from_glsl(ShaderStage::Fragment, super::shaders::FRAGMENT_SHADER))),
+        vertex: shaders.add(Shader::from_glsl(
+            ShaderStage::Vertex,
+            super::shaders::VERTEX_SHADER,
+        )),
+        fragment: Some(shaders.add(Shader::from_glsl(
+            ShaderStage::Fragment,
+            super::shaders::FRAGMENT_SHADER,
+        ))),
     }));
 
-    render_graph.add_system_node(
-        "tracer_data",
-        RenderResourcesNode::<TracerData>::new(true),
-    );
+    render_graph.add_system_node("tracer_data", RenderResourcesNode::<TracerData>::new(true));
 
     render_graph
         .add_node_edge("tracer_data", base::node::MAIN_PASS)

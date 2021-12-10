@@ -1,11 +1,11 @@
+use bevy::asset::{AssetServerSettings, FileAssetIo};
 use bevy::prelude::*;
 use bevy_loading::Progress;
-use bevy::asset::{AssetServerSettings, FileAssetIo};
 use zombrr_core::ZombrrPackages;
 
 pub fn load_packages(
     mut packages: ResMut<ZombrrPackages>,
-    asset_settings: Res<AssetServerSettings>
+    asset_settings: Res<AssetServerSettings>,
 ) -> Progress {
     let mut path = FileAssetIo::get_root_path();
     path.push(&asset_settings.asset_folder);

@@ -1,9 +1,6 @@
-use bevy::{
-    prelude::*,
-    input::system::exit_on_esc_system,
-};
-use bevy_sky::{ SkyMaterial, SkyCameraTag, SkyBundle, SkyPlugin };
-use bevy_devtools::{DevToolsPlugin, DevToolsExt};
+use bevy::{input::system::exit_on_esc_system, prelude::*};
+use bevy_devtools::{DevToolsExt, DevToolsPlugin};
+use bevy_sky::{SkyBundle, SkyCameraTag, SkyMaterial, SkyPlugin};
 
 fn main() {
     App::build()
@@ -21,14 +18,14 @@ fn setup(
     mut meshes: ResMut<Assets<Mesh>>,
     mut sky_materials: ResMut<Assets<SkyMaterial>>,
 ) {
-        commands.spawn_bundle(SkyBundle {
-              mesh: meshes.add(Mesh::from(shape::Cube { size: 15.0 })),
-              material: sky_materials.add(SkyMaterial::default()),
-              ..Default::default()
-        });
+    commands.spawn_bundle(SkyBundle {
+        mesh: meshes.add(Mesh::from(shape::Cube { size: 15.0 })),
+        material: sky_materials.add(SkyMaterial::default()),
+        ..Default::default()
+    });
 
-        // camera
-        commands
+    // camera
+    commands
         .spawn_bundle(PerspectiveCameraBundle {
             transform: Transform::from_xyz(0.0, 0.0, 10.0).looking_at(Vec3::ZERO, Vec3::Y),
             ..Default::default()

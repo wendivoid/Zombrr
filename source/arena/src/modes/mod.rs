@@ -7,7 +7,7 @@ pub use self::plugin::ModesPlugin;
 pub enum Mode {
     None,
     OneEnemy,
-    Custom(String)
+    Custom(String),
 }
 
 impl Default for Mode {

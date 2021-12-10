@@ -1,6 +1,6 @@
+use bevy::asset::LoadState;
 use bevy::prelude::*;
 use bevy_loading::*;
-use bevy::asset::LoadState;
 use zombrr_core::{ArenaOptions, ZombrrPackages};
 
 pub fn initialize_user_interface(
@@ -17,17 +17,16 @@ pub fn initialize_user_interface(
         debug!("Loading Environment Scene: {:?}", path);
         scene_spawner.spawn_dynamic(assets.load(path.to_str().unwrap()));
         commands.spawn_bundle(UiCameraBundle::default());
-        commands.spawn_bundle((
-            crate::UserInterfaceRoot,
-            Name::new("User Interface"),
-        )).insert_bundle(NodeBundle {
-            style: Style {
-                size: Size::new(Val::Percent(100.0), Val::Percent(100.0)),
+        commands
+            .spawn_bundle((crate::UserInterfaceRoot, Name::new("User Interface")))
+            .insert_bundle(NodeBundle {
+                style: Style {
+                    size: Size::new(Val::Percent(100.0), Val::Percent(100.0)),
+                    ..Default::default()
+                },
+                material: materials.add(Color::rgba(0.0, 0.0, 0.0, 0.0).into()),
                 ..Default::default()
-            },
-            material: materials.add(Color::rgba(0.0, 0.0, 0.0, 0.0).into()),
-            ..Default::default()
-        });
+            });
     }
 }
 
@@ -37,9 +36,8 @@ pub fn check_environment_scene(
     options: Res<ArenaOptions>,
     packages: Res<ZombrrPackages>,
     interfaces: Query<Entity, With<crate::interface::UserInterfaceRoot>>,
-    entities: Query<Entity, (With<super::DisplayRoot>, Without<Parent>)>
+    entities: Query<Entity, (With<super::DisplayRoot>, Without<Parent>)>,
 ) -> Progress {
-
     if let Some(environment) = packages.get_display(&options.player.display) {
         let mut path = environment.path.clone();
         path.push(&environment.meta.scene);
@@ -52,8 +50,5 @@ pub fn check_environment_scene(
         }
     }
 
-    Progress {
-        done: 0,
-        total: 1
-    }
+    Progress { done: 0, total: 1 }
 }

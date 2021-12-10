@@ -1,8 +1,8 @@
 use bevy::prelude::*;
-use zombrr_core::{ZombrrPackages, ArenaOptions, ZombrrObject};
+use zombrr_core::{ArenaOptions, ZombrrObject, ZombrrPackages};
 
-use crate::SpawnEnemy;
 use crate::controllers::character::SpawnCharacter;
+use crate::SpawnEnemy;
 
 pub fn spawn_enemy(
     mut commands: Commands,
@@ -26,13 +26,14 @@ pub fn spawn_enemy(
         let mut char_transform = Transform::identity();
         char_transform.rotate(Quat::from_rotation_y(std::f32::consts::PI));
 
-        let entity = commands.spawn_bundle(super::EnemyBundle::new(enemy_transform, spawn_event.speed))
+        let entity = commands
+            .spawn_bundle(super::EnemyBundle::new(enemy_transform, spawn_event.speed))
             .insert(super::brain::BLine { to: player })
             .insert(ZombrrObject::Enemy)
             .id();
         spawn_characters.send(SpawnCharacter {
             parent: entity,
-            character: options.player.character.clone()
+            character: options.player.character.clone(),
         });
     }
 }

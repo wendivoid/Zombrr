@@ -1,10 +1,10 @@
 use bevy::prelude::*;
 
 pub mod character;
-pub mod weapon;
 pub mod damage;
-pub mod tracers;
 pub mod navigatable;
+pub mod tracers;
+pub mod weapon;
 
 pub struct ArenaControllersPlugin;
 

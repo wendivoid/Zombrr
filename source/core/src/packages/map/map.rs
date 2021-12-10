@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::path::{PathBuf, Path};
+use std::path::{Path, PathBuf};
 
 use super::MapMeta;
 
@@ -7,16 +7,25 @@ use super::MapMeta;
 pub struct Map {
     pub name: String,
     pub path: PathBuf,
-    pub meta: MapMeta
+    pub meta: MapMeta,
 }
 
 impl Map {
-
     pub fn load<P: AsRef<Path>>(map_path: P) -> Result<Map, ron::Error> {
-        let name = map_path.as_ref().file_name().unwrap().to_string_lossy().to_string();
+        let name = map_path
+            .as_ref()
+            .file_name()
+            .unwrap()
+            .to_string_lossy()
+            .to_string();
         let path = map_path.as_ref().to_path_buf();
-        let map = Map { name, path, meta: Self::load_meta(&map_path)? };
-        tracing::debug!("Loading Map `{}`\n\t-> Name = {}\n\t-> Path = {:?}\n\t-> Priority = {}",
+        let map = Map {
+            name,
+            path,
+            meta: Self::load_meta(&map_path)?,
+        };
+        tracing::debug!(
+            "Loading Map `{}`\n\t-> Name = {}\n\t-> Path = {:?}\n\t-> Priority = {}",
             map.name,
             map.name,
             map.path,

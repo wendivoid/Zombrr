@@ -8,7 +8,7 @@ mod characters;
 pub use self::characters::{Character, CharacterMeta, CharacterRef};
 
 mod map;
-pub use self::map::{Map, MapMeta, MapRef, MapData, AmbientLight, SkyPreset};
+pub use self::map::{AmbientLight, Map, MapData, MapMeta, MapRef, SkyPreset};
 
 mod color;
 pub use self::color::Color;
@@ -23,7 +23,6 @@ pub use self::package::{Package, PackageMeta};
 pub struct ZombrrPackages(pub Vec<Namespace>);
 
 impl ZombrrPackages {
-
     pub fn load<P: AsRef<std::path::Path>>(&mut self, packages_dir: P) -> Result<(), ron::Error> {
         for entry in std::fs::read_dir(packages_dir)? {
             let entry = entry?;
@@ -100,13 +99,37 @@ impl ZombrrPackages {
         None
     }
 
-    pub fn get_maps(&self) -> impl Iterator<Item=(&str, impl Iterator<Item=(&str, impl Iterator<Item = &Map>)>)> {
-        self.0.iter()
-            .map(|x| (x.name.as_str(), x.packages.iter().map(|p| (p.name.as_str(), p.maps.iter()))))
+    pub fn get_maps(
+        &self,
+    ) -> impl Iterator<
+        Item = (
+            &str,
+            impl Iterator<Item = (&str, impl Iterator<Item = &Map>)>,
+        ),
+    > {
+        self.0.iter().map(|x| {
+            (
+                x.name.as_str(),
+                x.packages.iter().map(|p| (p.name.as_str(), p.maps.iter())),
+            )
+        })
     }
 
-    pub fn get_characters(&self) -> impl Iterator<Item=(&str, impl Iterator<Item=(&str, impl Iterator<Item = &Character>)>)> {
-        self.0.iter()
-            .map(|x| (x.name.as_str(), x.packages.iter().map(|p| (p.name.as_str(), p.characters.iter()))))
+    pub fn get_characters(
+        &self,
+    ) -> impl Iterator<
+        Item = (
+            &str,
+            impl Iterator<Item = (&str, impl Iterator<Item = &Character>)>,
+        ),
+    > {
+        self.0.iter().map(|x| {
+            (
+                x.name.as_str(),
+                x.packages
+                    .iter()
+                    .map(|p| (p.name.as_str(), p.characters.iter())),
+            )
+        })
     }
 }

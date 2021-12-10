@@ -15,12 +15,12 @@ pub use extras::GltfExtras;
 
 /// Adds support for GLTF file loading to Apps
 #[derive(Default)]
-pub struct ZombrrGltfPlugin;
+pub struct GltfMapPlugin;
 
-impl Plugin for ZombrrGltfPlugin {
+impl Plugin for GltfMapPlugin {
     fn build(&self, app: &mut AppBuilder) {
-        app.init_asset_loader::<GltfLoader>()
-            .add_asset::<Gltf>()
+        app.init_asset_loader::<GltfMapLoader>()
+            .add_asset::<GltfMap>()
             .add_asset::<GltfNode>()
             .add_asset::<GltfPrimitive>()
             .add_asset::<GltfMesh>()
@@ -30,7 +30,7 @@ impl Plugin for ZombrrGltfPlugin {
 
 #[derive(Debug, TypeUuid)]
 #[uuid = "7c18660d-303c-49f9-b0ff-3c3098293169"]
-pub struct Gltf {
+pub struct GltfMap {
     pub scenes: Vec<Handle<Scene>>,
     pub named_scenes: HashMap<String, Handle<Scene>>,
     pub meshes: Vec<Handle<GltfMesh>>,

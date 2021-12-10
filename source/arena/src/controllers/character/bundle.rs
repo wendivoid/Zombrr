@@ -5,7 +5,7 @@ pub struct CharacterBundle {
     pub name: Name,
     pub transform: Transform,
     pub global_transform: GlobalTransform,
-    pub character: super::CharacterRoot
+    pub character: super::CharacterRoot,
 }
 
 impl From<Transform> for CharacterBundle {

@@ -4,7 +4,10 @@ use bevy_rapier3d::prelude::*;
 use super::Navigatable;
 
 pub fn navigatable_move(
-    mut query: Query<(&Navigatable, &mut RigidBodyPosition, &mut RigidBodyVelocity), Changed<Navigatable>>
+    mut query: Query<
+        (&Navigatable, &mut RigidBodyPosition, &mut RigidBodyVelocity),
+        Changed<Navigatable>,
+    >,
 ) {
     for (navigatable, mut position, mut velocity) in query.iter_mut() {
         let mut vel: Vec3 = velocity.linvel.into();

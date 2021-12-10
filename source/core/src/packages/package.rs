@@ -1,9 +1,9 @@
-use serde::{ Serialize, Deserialize };
+use serde::{Deserialize, Serialize};
 
 use std::fs::{read_dir, File};
 use std::path::Path;
 
-use super::{Map, Character, Weapon, Display};
+use super::{Character, Display, Map, Weapon};
 
 #[derive(Debug, PartialEq, Clone)]
 pub struct Package {
@@ -12,25 +12,29 @@ pub struct Package {
     pub maps: Vec<Map>,
     pub characters: Vec<Character>,
     pub weapons: Vec<Weapon>,
-    pub displays: Vec<Display>
+    pub displays: Vec<Display>,
 }
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct PackageMeta {
-    pub priority: usize
+    pub priority: usize,
 }
 
 impl Package {
-
     pub fn load<P: AsRef<Path>>(path: P) -> Result<Package, ron::Error> {
-        let name = path.as_ref().file_name().unwrap().to_string_lossy().into_owned();
+        let name = path
+            .as_ref()
+            .file_name()
+            .unwrap()
+            .to_string_lossy()
+            .into_owned();
         Ok(Package {
             name,
             meta: Self::load_meta(&path)?,
             maps: Self::load_maps(&path)?,
             characters: Self::load_characters(&path)?,
             weapons: Self::load_weapons(&path)?,
-            displays: Self::load_displays(path)?
+            displays: Self::load_displays(path)?,
         })
     }
 
@@ -38,10 +42,10 @@ impl Package {
         let mut path = path.as_ref().to_path_buf();
         path.push("meta.ron");
         if path.exists() {
-          let reader = File::open(&path)?;
-          Ok(Some(ron::de::from_reader(reader)?))
+            let reader = File::open(&path)?;
+            Ok(Some(ron::de::from_reader(reader)?))
         } else {
-          Ok(None)
+            Ok(None)
         }
     }
 

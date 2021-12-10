@@ -2,7 +2,7 @@
 pub struct CharacterRef {
     pub namespace: String,
     pub package: String,
-    pub name: String
+    pub name: String,
 }
 
 impl Default for CharacterRef {
@@ -10,7 +10,7 @@ impl Default for CharacterRef {
         CharacterRef {
             namespace: "zombrr".into(),
             package: "debug".into(),
-            name: "ybot".into()
+            name: "ybot".into(),
         }
     }
 }

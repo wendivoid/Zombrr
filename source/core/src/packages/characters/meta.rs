@@ -1,4 +1,4 @@
-use serde::{ Serialize, Deserialize };
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct CharacterMeta {
@@ -7,8 +7,12 @@ pub struct CharacterMeta {
     #[serde(default = "scene_file")]
     pub scene: String,
     #[serde(default = "spaced_tilde")]
-    pub description: String
+    pub description: String,
 }
 
-fn scene_file() -> String { "scene.glb".into() }
-fn spaced_tilde() -> String { " ~ ".into() }
+fn scene_file() -> String {
+    "scene.glb".into()
+}
+fn spaced_tilde() -> String {
+    " ~ ".into()
+}

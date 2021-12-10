@@ -2,8 +2,8 @@ use bevy::prelude::*;
 use bevy_hilt::prelude::*;
 use bevy_rapier3d::prelude::*;
 
-use crate::controllers::navigatable::Navigatable;
 use crate::controllers::damage::Damage;
+use crate::controllers::navigatable::Navigatable;
 
 #[derive(Bundle)]
 pub struct EnemyBundle {
@@ -19,7 +19,7 @@ pub struct EnemyBundle {
     pub collider: ColliderBundle,
     pub position_sync: RigidBodyPositionSync,
     pub debug_collider: HiltDebugCollider,
-    pub debug_position: HiltDebugPosition
+    pub debug_position: HiltDebugPosition,
 }
 
 impl EnemyBundle {
@@ -36,10 +36,7 @@ impl EnemyBundle {
             },
             rigid_body: RigidBodyBundle {
                 body_type: RigidBodyType::Dynamic,
-                position: (
-                    transform.translation,
-                    transform.rotation
-                ).into(),
+                position: (transform.translation, transform.rotation).into(),
                 mass_properties: RigidBodyMassPropsFlags::ROTATION_LOCKED.into(),
                 ..Default::default()
             },
@@ -52,7 +49,7 @@ impl EnemyBundle {
             },
             position_sync: RigidBodyPositionSync::Discrete,
             debug_collider: HiltDebugCollider { color: Color::RED },
-            debug_position: Default::default()
+            debug_position: Default::default(),
         }
     }
 }

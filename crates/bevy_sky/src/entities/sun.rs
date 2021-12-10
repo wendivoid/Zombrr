@@ -9,7 +9,7 @@ pub struct Sun {
     pub simulation_seconds_per_second: f64,
     pub now: DateTime<Utc>,
     pub distance: f32,
-    pub active: bool
+    pub active: bool,
 }
 
 impl Sun {
@@ -39,7 +39,7 @@ impl Default for Sun {
             simulation_seconds_per_second: 1.0,
             now: Utc::now(),
             distance: 400000.0,
-            active: false
+            active: false,
         }
     }
 }

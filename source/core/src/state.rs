@@ -3,7 +3,7 @@ pub enum ZombrrState {
     Booting,
     Menu(MenuState),
     Arena(ArenaState),
-    Debug(DebugState)
+    Debug(DebugState),
 }
 
 impl Default for ZombrrState {
@@ -14,7 +14,7 @@ impl Default for ZombrrState {
 
 #[derive(Debug, PartialEq, Clone, Copy, Hash, Eq)]
 pub enum DebugState {
-    Paused
+    Paused,
 }
 
 #[derive(Debug, PartialEq, Clone, Copy, Hash, Eq)]
@@ -28,5 +28,5 @@ pub enum MenuState {
 pub enum ArenaState {
     Loading,
     Playing,
-    Over
+    Over,
 }

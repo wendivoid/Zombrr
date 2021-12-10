@@ -8,7 +8,7 @@ pub struct Navigatable {
     pub pitch: f32,
     pub roll: f32,
     pub velocity: Vec3,
-    pub on_solid: bool
+    pub on_solid: bool,
 }
 
 impl Default for Navigatable {
@@ -19,13 +19,12 @@ impl Default for Navigatable {
             pitch: 0.0,
             roll: 0.0,
             velocity: Vec3::ZERO,
-            on_solid: true
+            on_solid: true,
         }
     }
 }
 
 impl Navigatable {
-
     pub fn get_look_quat(&self) -> Quat {
         Quat::from_rotation_ypr(self.yaw, self.pitch, self.roll)
     }

@@ -32,7 +32,7 @@ use std::{
 };
 use thiserror::Error;
 
-use crate::{Gltf, GltfNode};
+use super::{GltfMap, GltfNode};
 
 /// An error that occurs when loading a GLTF file
 #[derive(Error, Debug)]
@@ -52,14 +52,14 @@ pub enum GltfError {
     #[error("failed to load an image")]
     ImageError(#[from] TextureError),
     #[error("failed to load an asset path")]
-    AssetIoError(#[from] AssetIoError)
+    AssetIoError(#[from] AssetIoError),
 }
 
 /// Loads meshes from GLTF files into Mesh assets
 #[derive(Default)]
-pub struct GltfLoader;
+pub struct GltfMapLoader;
 
-impl AssetLoader for GltfLoader {
+impl AssetLoader for GltfMapLoader {
     fn load<'a>(
         &'a self,
         bytes: &'a [u8],
@@ -272,7 +272,7 @@ async fn load_gltf<'a, 'b>(
         scenes.push(scene_handle);
     }
 
-    load_context.set_default_asset(LoadedAsset::new(Gltf {
+    load_context.set_default_asset(LoadedAsset::new(GltfMap {
         default_scene: gltf
             .default_scene()
             .and_then(|scene| scenes.get(scene.index()))
@@ -386,8 +386,14 @@ fn load_node(
 
     if let Some(extras) = gltf_node.extras() {
         match serde_json::from_str::<super::GltfExtras>(extras.get()) {
-            Err(err) => bevy_log::error!("Failed to deserialize extras field {:?} for node {:?}.", err, node_name),
-            Ok(extras) => {node.insert(extras);}
+            Err(err) => bevy_log::error!(
+                "Failed to deserialize extras field {:?} for node {:?}.",
+                err,
+                node_name
+            ),
+            Ok(extras) => {
+                node.insert(extras);
+            }
         }
     }
 
@@ -659,7 +665,7 @@ fn resolve_node_hierarchy(
 #[cfg(test)]
 mod test {
     use super::resolve_node_hierarchy;
-    use crate::GltfNode;
+    use crate::gltf::GltfNode;
 
     impl GltfNode {
         fn empty() -> Self {

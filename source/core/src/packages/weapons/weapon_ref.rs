@@ -2,7 +2,7 @@
 pub struct WeaponRef {
     pub namespace: String,
     pub package: String,
-    pub name: String
+    pub name: String,
 }
 
 impl Default for WeaponRef {
@@ -10,7 +10,7 @@ impl Default for WeaponRef {
         WeaponRef {
             namespace: "zombrr".into(),
             package: "zombrr".into(),
-            name: "bar".into()
+            name: "bar".into(),
         }
     }
 }
