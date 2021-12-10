@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 zombrr = { path = "../../source/zombrr" }
 zombrr-core = { path = "../../source/core" }
+zombrr_arena = { path = "../../source/arena" }
 bevy_devtools = { git = "https://github.com/Bytebuddha/bevy_devtools" }
 
 [dependencies.bevy]

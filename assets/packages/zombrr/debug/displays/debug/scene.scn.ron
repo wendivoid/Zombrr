@@ -37,11 +37,11 @@
         },
       },
       {
-          "type": "zombrr::arena::display::TextField",
+          "type": "zombrr_arena::display::TextField",
           "struct": {}
       },
       {
-          "type": "zombrr::arena::display::KillCountText",
+          "type": "zombrr_arena::display::KillCountText",
           "struct": {}
       },
       {
@@ -291,11 +291,11 @@
         },
       },
       {
-          "type": "zombrr::arena::display::TextField",
+          "type": "zombrr_arena::display::TextField",
           "struct": {}
       },
       {
-          "type": "zombrr::arena::display::FpsText",
+          "type": "zombrr_arena::display::FpsText",
           "struct": {}
       },
       {
@@ -803,7 +803,7 @@
         },
       },
       {
-          "type": "zombrr::arena::display::DisplayRoot",
+          "type": "zombrr_arena::display::DisplayRoot",
           "struct": {}
       },
       {

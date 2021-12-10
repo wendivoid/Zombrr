@@ -6,7 +6,7 @@ use chrono::{TimeZone, Utc};
 
 use bevy_sky::{SkyMaterial, SkyBundle, Sun};
 
-use crate::arena::ArenaMapData;
+use crate::ArenaMapData;
 
 pub fn spawn_arena(
     mut commands: Commands,
@@ -15,7 +15,7 @@ pub fn spawn_arena(
     asset_server: Res<AssetServer>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut scene_spawner: ResMut<SceneSpawner>,
-    mut resources: ResMut<crate::arena::ArenaResources>,
+    mut resources: ResMut<crate::ArenaResources>,
     mut sky_materials: ResMut<Assets<SkyMaterial>>,
 ) {
     if let Some(map) = packages.get_map(&options.map) {

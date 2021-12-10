@@ -1,5 +1,5 @@
 [package]
-name = "zombrr"
+name = "zombrr_arena"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,10 +8,11 @@ version = "0.5.0"
 
 [dependencies]
 chrono = "0.4.19"
+serde_json = "1.0.67"
 bevy_rapier3d = { version = "0.10.0", features = ["serde-serialize"] }
 zombrr-gltf = { path = "../gltf" }
 zombrr-core = { path = "../core" }
-zombrr_arena = { path = "../arena" }
 bevy_devtools = { git = "https://github.com/Bytebuddha/bevy_devtools", features = ["rapier3d"] }
 bevy_hilt = { git = "https://github.com/Bytebuddha/bevy_hilt", features = ["3d"] }
+bevy_sky = { path = "../../crates/bevy_sky" }
 bevy_loading = "0.1.1"

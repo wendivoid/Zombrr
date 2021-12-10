@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 use bevy_devtools::{ Tool, egui, Settings };
 
-use zombrr::arena::modes::Mode;
+use zombrr_arena::modes::Mode;
 
 pub fn change_mode() -> Tool {
     Tool {
@@ -15,7 +15,7 @@ pub fn change_mode() -> Tool {
 }
 
 fn render_change_mode(ui: &mut egui::Ui, _: &mut Settings, world: &mut World) {
-    let mut options = world.get_resource_mut::<zombrr::arena::modes::Mode>().unwrap();
+    let mut options = world.get_resource_mut::<zombrr_arena::modes::Mode>().unwrap();
     ui.horizontal(|ui| {
         egui::ComboBox::from_label("Change Mode")
         .selected_text(&format!("{:?}", *options))

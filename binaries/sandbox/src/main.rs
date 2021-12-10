@@ -20,7 +20,7 @@ fn main() {
         })
         // Add plugins
         .add_plugins(zombrr::ZombrrPlugins)
-        .insert_resource(zombrr::arena::modes::Mode::OneEnemy)
+        .insert_resource(zombrr_arena::modes::Mode::OneEnemy)
 
         // Development Tools
         .add_event::<events::ChangeMap>()

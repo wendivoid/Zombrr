@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use crate::arena::enemy::EnemyRoot;
+use crate::enemy::EnemyRoot;
 
 pub fn apply_death(
     mut commands: Commands,

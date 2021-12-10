@@ -72,7 +72,7 @@ fn update_fps_text(
 fn update_killcount_text(
     mut commands: Commands,
     assets: Res<AssetServer>,
-    killcounts: Res<crate::arena::controllers::damage::KillCount>,
+    killcounts: Res<crate::controllers::damage::KillCount>,
     mut query: Query<(Entity, Option<&mut Text>), With<super::KillCountText>>
 ) {
     for (entity, ref mut text) in query.iter_mut() {

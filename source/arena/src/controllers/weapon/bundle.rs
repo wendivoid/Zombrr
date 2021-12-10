@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::arena::controllers::weapon::{Magazine, WeaponMeta};
+use crate::controllers::weapon::{Magazine, WeaponMeta};
 
 #[derive(Bundle)]
 pub struct WeaponBundle {

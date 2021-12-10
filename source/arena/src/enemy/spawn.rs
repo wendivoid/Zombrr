@@ -1,8 +1,8 @@
 use bevy::prelude::*;
 use zombrr_core::{ZombrrPackages, ArenaOptions, ZombrrObject};
 
-use crate::arena::SpawnEnemy;
-use crate::arena::controllers::character::SpawnCharacter;
+use crate::SpawnEnemy;
+use crate::controllers::character::SpawnCharacter;
 
 pub fn spawn_enemy(
     mut commands: Commands,
@@ -10,7 +10,7 @@ pub fn spawn_enemy(
     packages: Res<ZombrrPackages>,
     mut events: EventReader<SpawnEnemy>,
     mut spawn_characters: EventWriter<SpawnCharacter>,
-    players: Query<Entity, With<crate::arena::player::PlayerRoot>>,
+    players: Query<Entity, With<crate::player::PlayerRoot>>,
 ) {
     for spawn_event in events.iter() {
         let player = players.single().unwrap();

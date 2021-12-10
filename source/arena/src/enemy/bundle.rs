@@ -2,21 +2,17 @@ use bevy::prelude::*;
 use bevy_hilt::prelude::*;
 use bevy_rapier3d::prelude::*;
 
-use crate::arena::controllers::navigatable::{
-    Navigatable, KeyboardInput, MouseInput
-};
-use crate::arena::controllers::damage::Damage;
+use crate::controllers::navigatable::Navigatable;
+use crate::controllers::damage::Damage;
 
 #[derive(Bundle)]
-pub struct PlayerBundle {
+pub struct EnemyBundle {
     pub name: Name,
     pub health: Damage,
-    pub root: super::PlayerRoot,
+    pub root: super::EnemyRoot,
     pub transform: Transform,
     pub global_transform: GlobalTransform,
     pub navigatable: Navigatable,
-    pub keyboard: KeyboardInput,
-    pub mouse: MouseInput,
     #[bundle]
     pub rigid_body: RigidBodyBundle,
     #[bundle]
@@ -26,17 +22,18 @@ pub struct PlayerBundle {
     pub debug_position: HiltDebugPosition
 }
 
-impl From<Transform> for PlayerBundle {
-    fn from(transform: Transform) -> PlayerBundle {
-        PlayerBundle {
-            name: Name::new("Player"),
-            root: super::PlayerRoot,
-            transform,
+impl EnemyBundle {
+    pub fn new(transform: Transform, speed: f32) -> EnemyBundle {
+        EnemyBundle {
+            name: Name::new("Enemy"),
             health: Damage::default(),
+            root: super::EnemyRoot,
+            transform,
             global_transform: GlobalTransform::identity(),
-            navigatable: Navigatable::default(),
-            keyboard: KeyboardInput,
-            mouse: MouseInput { sensitivity: 10.0, disabled: false },
+            navigatable: Navigatable {
+                speed,
+                ..Default::default()
+            },
             rigid_body: RigidBodyBundle {
                 body_type: RigidBodyType::Dynamic,
                 position: (
@@ -54,7 +51,7 @@ impl From<Transform> for PlayerBundle {
                 ..Default::default()
             },
             position_sync: RigidBodyPositionSync::Discrete,
-            debug_collider: HiltDebugCollider { color: Color::TEAL },
+            debug_collider: HiltDebugCollider { color: Color::RED },
             debug_position: Default::default()
         }
     }

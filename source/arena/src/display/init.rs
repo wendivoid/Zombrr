@@ -18,7 +18,7 @@ pub fn initialize_user_interface(
         scene_spawner.spawn_dynamic(assets.load(path.to_str().unwrap()));
         commands.spawn_bundle(UiCameraBundle::default());
         commands.spawn_bundle((
-            crate::arena::UserInterfaceRoot,
+            crate::UserInterfaceRoot,
             Name::new("User Interface"),
         )).insert_bundle(NodeBundle {
             style: Style {
@@ -36,7 +36,7 @@ pub fn check_environment_scene(
     assets: Res<AssetServer>,
     options: Res<ArenaOptions>,
     packages: Res<ZombrrPackages>,
-    interfaces: Query<Entity, With<crate::arena::interface::UserInterfaceRoot>>,
+    interfaces: Query<Entity, With<crate::interface::UserInterfaceRoot>>,
     entities: Query<Entity, (With<super::DisplayRoot>, Without<Parent>)>
 ) -> Progress {
 

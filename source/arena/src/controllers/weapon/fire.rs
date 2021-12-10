@@ -3,7 +3,7 @@ use bevy_rapier3d::prelude::*;
 
 use super::*;
 use zombrr_core::packages::WeaponMeta;
-use crate::arena::controllers::damage::SustainedDamage;
+use crate::controllers::damage::SustainedDamage;
 
 pub fn handle_fire_weapon(
     mut commands: Commands,
@@ -41,7 +41,7 @@ pub fn handle_fire_weapon(
                     if let Some((handle, normal)) = query_pipeline.cast_ray_and_get_normal(
                          &colliders, &ray, 1000.0, true, InteractionGroups::all(), None
                     ) {
-                        commands.spawn().insert(crate::arena::controllers::tracers::Tracer {
+                        commands.spawn().insert(crate::controllers::tracers::Tracer {
                                 length: 150,
                                 color: crate::utils::zombrr_color_to_bevy(&weapon_meta.tracer_color),
                                 point: shot.translation,

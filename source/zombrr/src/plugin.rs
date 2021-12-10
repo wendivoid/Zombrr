@@ -10,7 +10,7 @@ impl Plugin for ZombrrPlugin {
         app.init_resource::<ZombrrPackages>()
             .add_plugin(zombrr_gltf::ZombrrGltfPlugin)
             .add_plugin(crate::devtools::DevToolsPlugin)
-            .add_plugin(crate::arena::ArenaPlugin)
+            .add_plugin(zombrr_arena::ArenaPlugin)
             .add_state(ZombrrState::Booting)
 
             // Physics

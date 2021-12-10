@@ -2,8 +2,8 @@ use bevy::prelude::*;
 use bevy::input::mouse::MouseMotion;
 
 use super::Navigatable;
-use crate::arena::player::PlayerRoot;
-use crate::arena::controllers::weapon::{FireWeapon, WeaponRoot};
+use crate::player::PlayerRoot;
+use crate::controllers::weapon::{FireWeapon, WeaponRoot};
 
 pub struct KeyboardInput;
 pub struct MouseInput { pub sensitivity: f32, pub disabled: bool }

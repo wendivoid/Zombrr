@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::arena::controllers::navigatable::Navigatable;
+use crate::controllers::navigatable::Navigatable;
 
 pub struct BLine { pub to: Entity }
 

@@ -3,7 +3,7 @@ use bevy::app::Events;
 use bevy_devtools::egui::{self, Ui};
 use bevy_devtools::{Tool, Setting, Settings, SettingValue};
 
-use crate::arena::SpawnEnemy;
+use zombrr_arena::SpawnEnemy;
 
 pub fn settings() -> Setting {
     Setting::new_labeled("enemy", "Enemy")

@@ -3,15 +3,15 @@ use bevy_loading::Progress;
 use zombrr_core::{ArenaOptions, ZombrrObject};
 
 use super::cameras::PlayerCamerasBundle;
-use crate::arena::controllers::weapon::SpawnWeapon;
-use crate::arena::controllers::character::SpawnCharacter;
+use crate::controllers::weapon::SpawnWeapon;
+use crate::controllers::character::SpawnCharacter;
 
 pub fn init_player(
     mut commands: Commands,
     options: Res<ArenaOptions>,
     mut spawn_characters: EventWriter<SpawnCharacter>,
     mut spawn_weapons: EventWriter<SpawnWeapon>,
-    query: Query<(&Name, &Transform), With<crate::arena::map::ArenaGltfMapObject>>
+    query: Query<(&Name, &Transform), With<crate::map::ArenaGltfMapObject>>
 ) -> Progress {
     for (name, transform) in query.iter() {
         if name.as_str() == "PlayerSpawn" {

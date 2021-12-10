@@ -2,7 +2,7 @@ use bevy::prelude::*;
 use zombrr_core::{ArenaState, ZombrrState};
 
 use super::*;
-use crate::arena::player::PlayerRoot;
+use crate::player::PlayerRoot;
 
 pub struct DamagePlugin;
 

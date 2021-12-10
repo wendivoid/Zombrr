@@ -5,7 +5,7 @@ use bevy_loading::Progress;
 
 pub fn init_map_objects(
     mut commands: Commands,
-    resources: Res<crate::arena::ArenaResources>,
+    resources: Res<crate::ArenaResources>,
     scene_spawner: Res<SceneSpawner>,
     meshes: Res<Assets<Mesh>>,
     root_elements: Query<Entity, Without<Parent>>,

@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 
 use zombrr_core::ArenaOptions;
-use crate::arena::enemy::{EnemyRoot, SpawnEnemy};
+use crate::enemy::{EnemyRoot, SpawnEnemy};
 
 pub fn maintain_one(
     mut spawned: Local<bool>,
