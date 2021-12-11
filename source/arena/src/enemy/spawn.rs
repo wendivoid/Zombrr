@@ -10,7 +10,7 @@ pub fn spawn_enemy(
     packages: Res<ZombrrPackages>,
     mut events: EventReader<SpawnEnemy>,
     mut spawn_characters: EventWriter<SpawnCharacter>,
-    players: Query<Entity, With<crate::player::PlayerRoot>>,
+    players: Query<Entity, With<zombrr_core::PlayerRoot>>,
 ) {
     for spawn_event in events.iter() {
         let player = players.single().unwrap();

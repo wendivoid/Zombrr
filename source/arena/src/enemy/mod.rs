@@ -15,4 +15,3 @@ pub struct SpawnEnemy {
     pub translation: bevy::math::Vec3,
     pub character: CharacterRef,
 }
-pub struct EnemyRoot;

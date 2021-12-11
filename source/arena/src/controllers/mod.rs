@@ -1,7 +1,6 @@
 use bevy::prelude::*;
 
 pub mod character;
-pub mod damage;
 pub mod navigatable;
 pub mod tracers;
 pub mod weapon;
@@ -13,7 +12,7 @@ impl Plugin for ArenaControllersPlugin {
         app.add_plugin(navigatable::NavigatablePlugin)
             .add_plugin(character::CharacterPlugin)
             .add_plugin(weapon::WeaponPlugin)
-            .add_plugin(damage::DamagePlugin)
+            .add_plugin(zombrr_damage::DamagePlugin)
             .add_plugin(tracers::TracersPlugin);
     }
 }

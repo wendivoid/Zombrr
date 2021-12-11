@@ -2,14 +2,15 @@ use bevy::prelude::*;
 use bevy_hilt::prelude::*;
 use bevy_rapier3d::prelude::*;
 
-use crate::controllers::damage::Damage;
+use zombrr_damage::Health;
 use crate::controllers::navigatable::Navigatable;
 
 #[derive(Bundle)]
 pub struct EnemyBundle {
     pub name: Name,
-    pub health: Damage,
-    pub root: super::EnemyRoot,
+    pub health: Health,
+    pub damage: zombrr_damage::ShowsDamage,
+    pub root: zombrr_core::EnemyRoot,
     pub transform: Transform,
     pub global_transform: GlobalTransform,
     pub navigatable: Navigatable,
@@ -26,8 +27,9 @@ impl EnemyBundle {
     pub fn new(transform: Transform, speed: f32) -> EnemyBundle {
         EnemyBundle {
             name: Name::new("Enemy"),
-            health: Damage::default(),
-            root: super::EnemyRoot,
+            health: Health::default(),
+            root: zombrr_core::EnemyRoot,
+            damage: zombrr_damage::ShowsDamage,
             transform,
             global_transform: GlobalTransform::identity(),
             navigatable: Navigatable {

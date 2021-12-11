@@ -1,9 +1,9 @@
-use bevy::input::mouse::MouseMotion;
 use bevy::prelude::*;
+use bevy::input::mouse::MouseMotion;
+use zombrr_core::{PlayerRoot, WeaponRoot};
 
 use super::Navigatable;
-use crate::controllers::weapon::{FireWeapon, WeaponRoot};
-use crate::player::PlayerRoot;
+use crate::controllers::weapon::FireWeapon;
 
 pub struct KeyboardInput;
 pub struct MouseInput {

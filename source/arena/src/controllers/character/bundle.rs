@@ -5,7 +5,7 @@ pub struct CharacterBundle {
     pub name: Name,
     pub transform: Transform,
     pub global_transform: GlobalTransform,
-    pub character: super::CharacterRoot,
+    pub character: zombrr_core::CharacterRoot,
 }
 
 impl From<Transform> for CharacterBundle {
@@ -14,7 +14,7 @@ impl From<Transform> for CharacterBundle {
             transform,
             name: Name::new("Character"),
             global_transform: GlobalTransform::identity(),
-            character: super::CharacterRoot,
+            character: zombrr_core::CharacterRoot,
         }
     }
 }

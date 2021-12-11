@@ -15,7 +15,7 @@ pub fn finalize_weapon_spawns(
                         .insert_bundle(super::WeaponBundle::from(meta.clone()));
                     commands.entity(parent.0).push_children(&[entity]);
                 } else {
-                    commands.entity(entity).insert(super::WeaponEntity);
+                    commands.entity(entity).insert(zombrr_core::WeaponEntity);
                 }
             });
             commands.entity(character).despawn_recursive();

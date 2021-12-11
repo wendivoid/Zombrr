@@ -2,8 +2,9 @@ use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
 use super::*;
-use crate::controllers::damage::SustainedDamage;
+use zombrr_damage::SustainedDamage;
 use zombrr_core::packages::WeaponMeta;
+use zombrr_core::{WeaponRoot, WeaponEntity};
 
 pub fn handle_fire_weapon(
     mut commands: Commands,

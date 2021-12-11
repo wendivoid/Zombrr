@@ -17,7 +17,7 @@ pub fn finalize_character_spawns(
                         .insert_bundle(super::CharacterBundle::from(char_transform));
                     commands.entity(parent.0).push_children(&[entity]);
                 } else {
-                    commands.entity(entity).insert(super::CharacterEntity);
+                    commands.entity(entity).insert(zombrr_core::CharacterEntity);
                 }
             });
             commands.entity(character).despawn_recursive();

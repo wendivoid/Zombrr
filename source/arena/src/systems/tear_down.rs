@@ -19,7 +19,7 @@ pub fn tear_down_user_interface(
 
 pub fn tear_down_enemies(
     mut commands: Commands,
-    entities: Query<Entity, With<crate::enemy::EnemyRoot>>
+    entities: Query<Entity, With<zombrr_core::EnemyRoot>>
 ) {
     for entity in entities.iter() {
         commands.entity(entity).despawn_recursive();

@@ -5,32 +5,15 @@ use zombrr_core::packages::{WeaponMeta, WeaponRef};
 mod finalize;
 mod fire;
 mod plugin;
+
+mod magazine;
+pub use self::magazine::Magazine;
 mod spawn;
 pub use self::plugin::WeaponPlugin;
 mod bundle;
 pub use self::bundle::WeaponBundle;
 
-pub struct WeaponRoot;
-pub struct WeaponEntity;
 pub struct UnloadedWeapon(pub InstanceId, WeaponMeta);
-
-#[derive(Debug, Reflect, Copy, Clone)]
-pub struct Magazine {
-    pub count: usize,
-    pub length: usize,
-    pub used: usize,
-}
-
-impl Magazine {
-    pub fn fire(&mut self) -> bool {
-        if self.count * self.length <= self.used {
-            false
-        } else {
-            self.used += 1;
-            true
-        }
-    }
-}
 
 pub struct SpawnWeapon {
     pub parent: Entity,

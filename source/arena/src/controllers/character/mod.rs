@@ -11,8 +11,6 @@ pub use self::plugin::CharacterPlugin;
 mod bundle;
 pub use self::bundle::CharacterBundle;
 
-pub struct CharacterRoot;
-pub struct CharacterEntity;
 pub struct UnloadedCharacter(pub InstanceId);
 
 pub struct SpawnCharacter {

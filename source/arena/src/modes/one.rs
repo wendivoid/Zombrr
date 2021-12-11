@@ -1,13 +1,13 @@
 use bevy::prelude::*;
 
-use crate::enemy::{EnemyRoot, SpawnEnemy};
+use crate::enemy::SpawnEnemy;
 use zombrr_core::ArenaOptions;
 
 pub fn maintain_one(
     mut spawned: Local<bool>,
     res: Res<super::Mode>,
     options: Res<ArenaOptions>,
-    query: Query<&EnemyRoot>,
+    query: Query<&zombrr_core::EnemyRoot>,
     mut events: EventWriter<SpawnEnemy>,
 ) {
     match *res {

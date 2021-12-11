@@ -9,7 +9,7 @@ pub struct WeaponBundle {
     pub magazine: Magazine,
     pub transform: Transform,
     pub global_transform: GlobalTransform,
-    pub root: super::WeaponRoot,
+    pub root: zombrr_core::WeaponRoot,
 }
 
 impl From<WeaponMeta> for WeaponBundle {
@@ -24,7 +24,7 @@ impl From<WeaponMeta> for WeaponBundle {
             name: Name::new("Weapon"),
             transform: Transform::from_xyz(0.1, 1.6, -0.5),
             global_transform: GlobalTransform::identity(),
-            root: super::WeaponRoot,
+            root: zombrr_core::WeaponRoot,
         }
     }
 }
