@@ -1,11 +1,9 @@
 use bevy::prelude::*;
 use bevy_devtools::Settings;
-use zombrr_core::{DebugState, ZombrrState};
 
 pub fn toggle(
     keys: Res<Input<KeyCode>>,
-    mut settings: ResMut<Settings>,
-    mut state: ResMut<State<ZombrrState>>,
+    mut settings: ResMut<Settings>
 ) {
     if keys.just_pressed(KeyCode::F11) {
         if let Some(setting) = settings.get_key_mut(&["devtools", "enabled"]) {
@@ -17,14 +15,6 @@ pub fn toggle(
             }
         } else {
             error!("Cant find DevTools Settings key `devtools -> enabled`");
-        }
-    }
-
-    if keys.just_pressed(KeyCode::F12) {
-        if state.current() == &ZombrrState::Debug(DebugState::Paused) {
-            state.pop().unwrap();
-        } else {
-            state.push(ZombrrState::Debug(DebugState::Paused)).unwrap();
         }
     }
 }

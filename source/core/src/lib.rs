@@ -2,7 +2,7 @@ pub mod packages;
 pub use self::packages::ZombrrPackages;
 
 mod state;
-pub use self::state::{ArenaState, DebugState, MenuState, ZombrrState};
+pub use self::state::{ArenaState, MenuState, ZombrrState};
 
 mod options;
 pub use self::options::ArenaOptions;

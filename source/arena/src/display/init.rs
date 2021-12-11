@@ -16,7 +16,7 @@ pub fn initialize_user_interface(
         path.push(&environment.meta.scene);
         debug!("Loading Environment Scene: {:?}", path);
         scene_spawner.spawn_dynamic(assets.load(path.to_str().unwrap()));
-        commands.spawn_bundle(UiCameraBundle::default());
+        commands.spawn_bundle(UiCameraBundle::default()).insert(crate::interface::UserInterfaceCamera);
         commands
             .spawn_bundle((crate::UserInterfaceRoot, Name::new("User Interface")))
             .insert_bundle(NodeBundle {

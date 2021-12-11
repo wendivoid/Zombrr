@@ -22,7 +22,9 @@ impl Plugin for ArenaPlugin {
             )
             .add_system_set(
                 SystemSet::on_exit(ZombrrState::Arena(ArenaState::Playing))
-                    .with_system(super::systems::tear_down_physics.system()),
+                    .with_system(super::systems::tear_down_physics.system())
+                    .with_system(super::systems::tear_down_user_interface.system())
+                    .with_system(super::systems::tear_down_enemies.system()),
             )
             .add_system_set(
                 SystemSet::on_pause(ZombrrState::Arena(ArenaState::Playing))
