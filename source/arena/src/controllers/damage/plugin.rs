@@ -12,8 +12,12 @@ impl Plugin for DamagePlugin {
             .add_event::<SustainedDamage>()
             .add_event::<Death>()
             .register_type::<Damage>()
-            .add_system(apply::apply_health.system())
-            .add_system(death::apply_death.system())
+            .add_system_set(
+                SystemSet::on_update(ZombrrState::Arena(ArenaState::Playing))
+                    .with_system(apply::apply_health.system())
+                    .with_system(death::apply_death.system())
+                    .with_system(apply::remove_bullet_decals.system())
+            )
             .add_system_set(
                 SystemSet::on_enter(ZombrrState::Arena(ArenaState::Playing))
                     .with_system(add_empty_killcounts.system()),

@@ -72,7 +72,8 @@ pub fn init_map_objects(
                                             })
                                             .insert(bevy_hilt::prelude::HiltDebugCollider {
                                                 color: Color::ORANGE,
-                                            });
+                                            })
+                                            .insert(zombrr_core::BulletHoles::default());
                                     }
                                 }
                             }

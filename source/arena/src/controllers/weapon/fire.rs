@@ -46,6 +46,7 @@ pub fn handle_fire_weapon(
                         InteractionGroups::all(),
                         None,
                     ) {
+                        let point = ray.point_at(normal.toi - 0.01);
                         commands
                             .spawn()
                             .insert(crate::controllers::tracers::Tracer {
@@ -54,12 +55,14 @@ pub fn handle_fire_weapon(
                                     &weapon_meta.tracer_color,
                                 ),
                                 point: shot.translation,
-                                target: ray.point_at(normal.toi).into(),
+                                target: point.into(),
                             });
                         health_events.send(SustainedDamage {
                             value: weapon_meta.damage,
                             target: handle.entity(),
                             assailant: *assailant,
+                            point: point.into(),
+                            surface_normal: normal.normal.into()
                         });
                     }
                 }
