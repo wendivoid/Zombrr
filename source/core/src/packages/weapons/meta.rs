@@ -6,18 +6,32 @@ use crate::packages::Color;
 pub struct WeaponMeta {
     #[serde(flatten)]
     pub label: Option<String>,
-    #[serde(default = "magazine_length")]
-    pub magazine_length: usize,
-    #[serde(default = "magazine_count")]
-    pub magazine_count: usize,
-    #[serde(default = "default_damage")]
-    pub damage: f32,
-    #[serde(default = "tracer_color")]
-    pub tracer_color: Color,
     #[serde(default = "scene_file")]
     pub scene: String,
     #[serde(default = "spaced_tilde")]
     pub description: String,
+    #[serde(default = "default_damage")]
+    pub damage: f32,
+    pub action: WeaponAction,
+    pub magazine: Magazine,
+}
+
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
+pub enum WeaponAction {
+    Ray {
+        #[serde(default = "default_range")]
+        range: f32,
+        #[serde(default = "tracer_color")]
+        tracer_color: Color
+    }
+}
+
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
+pub struct Magazine {
+    #[serde(default = "magazine_length")]
+    pub length: usize,
+    #[serde(default = "magazine_count")]
+    pub count: usize
 }
 
 fn scene_file() -> String {
@@ -37,4 +51,7 @@ fn default_damage() -> f32 {
 }
 fn tracer_color() -> Color {
     Color::Rgba([0.80, 0.33, 0.0, 0.50])
+}
+fn default_range() -> f32 {
+    1000.0
 }

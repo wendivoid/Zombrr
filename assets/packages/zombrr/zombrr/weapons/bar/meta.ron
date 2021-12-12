@@ -1,5 +1,13 @@
 {
     label: "Bar",
     description: "Common Rifle",
-    scene: "bar.glb"
+    scene: "bar.glb",
+    action: Ray (
+        range: 1000.0,
+        tracer_color: [1.0, 1.0, 1.0]
+    ),
+    magazine: Magazine (
+        count: 12,
+        total: 88
+    )
 }

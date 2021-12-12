@@ -16,8 +16,8 @@ impl From<WeaponMeta> for WeaponBundle {
     fn from(weapon: WeaponMeta) -> WeaponBundle {
         WeaponBundle {
             magazine: Magazine {
-                count: weapon.magazine_count,
-                length: weapon.magazine_length,
+                count: weapon.magazine.count,
+                length: weapon.magazine.length,
                 used: 0,
             },
             weapon,

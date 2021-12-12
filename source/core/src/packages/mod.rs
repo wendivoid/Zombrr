@@ -1,5 +1,5 @@
 mod weapons;
-pub use self::weapons::{Weapon, WeaponMeta, WeaponRef};
+pub use self::weapons::{Weapon, WeaponMeta, WeaponRef, WeaponAction, Magazine};
 
 mod displays;
 pub use self::displays::{Display, DisplayMeta, DisplayRef};
