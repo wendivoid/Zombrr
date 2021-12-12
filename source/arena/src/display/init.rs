@@ -21,6 +21,7 @@ pub fn initialize_user_interface(
             .spawn_bundle((crate::UserInterfaceRoot, Name::new("User Interface")))
             .insert_bundle(NodeBundle {
                 style: Style {
+                    position_type: PositionType::Absolute,
                     size: Size::new(Val::Percent(100.0), Val::Percent(100.0)),
                     ..Default::default()
                 },

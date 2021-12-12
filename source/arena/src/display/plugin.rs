@@ -12,12 +12,15 @@ impl Plugin for DisplayPlugin {
             .register_type::<super::KillCountText>()
             // NOTE: This is required to use Text Bundle in scenes ?
             .register_type::<Option<f32>>()
-            .add_system(update_fps_text.system())
-            .add_system(update_killcount_text.system())
-            .add_system(super::add_focus_policy.system())
             .add_system_set(
                 SystemSet::on_enter(ZombrrState::Arena(ArenaState::Loading))
                     .with_system(super::init::initialize_user_interface.system()),
+            )
+            .add_system_set(
+                SystemSet::on_update(ZombrrState::Arena(ArenaState::Playing))
+                    .with_system(update_fps_text.system())
+                    .with_system(update_killcount_text.system())
+                    .with_system(super::add_focus_policy.system())
             )
             .add_system_set(
                 SystemSet::on_update(ZombrrState::Arena(ArenaState::Loading)).with_system(

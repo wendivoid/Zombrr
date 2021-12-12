@@ -810,7 +810,7 @@
         "type": "bevy_transform::components::children::Children",
         "tuple_struct": [
           {
-            "type": "smallvec::SmallVec<[bevy_ecs::entity::Entity; 8]>",
+            "type": "smallvec::SmallVec<[bevy_ecs::entity::Entity; 2]>",
             "list": [
               {
                 "type": "bevy_ecs::entity::Entity",
