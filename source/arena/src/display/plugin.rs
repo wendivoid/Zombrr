@@ -71,7 +71,7 @@ fn update_fps_text(
 fn update_killcount_text(
     mut commands: Commands,
     assets: Res<AssetServer>,
-    killcounts: Res<zombrr_damage::KillCount>,
+    killcounts: Res<zombrr_health::KillCount>,
     mut query: Query<(Entity, Option<&mut Text>), With<super::KillCountText>>,
 ) {
     for (entity, ref mut text) in query.iter_mut() {

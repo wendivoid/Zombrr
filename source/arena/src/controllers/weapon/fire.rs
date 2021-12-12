@@ -2,7 +2,7 @@ use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
 use super::*;
-use zombrr_damage::SustainedDamage;
+use zombrr_health::Damage;
 use zombrr_core::packages::WeaponMeta;
 use zombrr_core::{WeaponRoot, WeaponEntity};
 
@@ -11,7 +11,7 @@ pub fn handle_fire_weapon(
     mut events: EventReader<FireWeapon>,
     query_pipeline: Res<QueryPipeline>,
     colliders: QueryPipelineColliderComponentsQuery,
-    mut health_events: EventWriter<SustainedDamage>,
+    mut health_events: EventWriter<Damage>,
     weapon_entities: Query<(&Name, &GlobalTransform), With<WeaponEntity>>,
     mut weapons: Query<(&mut Magazine, &Children, &WeaponMeta), With<WeaponRoot>>,
 ) {
@@ -58,7 +58,7 @@ pub fn handle_fire_weapon(
                                 point: shot.translation,
                                 target: point.into(),
                             });
-                        health_events.send(SustainedDamage {
+                        health_events.send(Damage {
                             value: weapon_meta.damage,
                             target: handle.entity(),
                             assailant: *assailant,

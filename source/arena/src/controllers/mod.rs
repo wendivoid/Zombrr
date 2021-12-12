@@ -12,6 +12,7 @@ impl Plugin for ArenaControllersPlugin {
         app.add_plugin(navigatable::NavigatablePlugin)
             .add_plugin(character::CharacterPlugin)
             .add_plugin(weapon::WeaponPlugin)
+            .add_plugin(zombrr_health::HealthPlugin)
             .add_plugin(zombrr_damage::DamagePlugin)
             .add_plugin(tracers::TracersPlugin);
     }

@@ -2,14 +2,13 @@ use bevy::prelude::*;
 use bevy_hilt::prelude::*;
 use bevy_rapier3d::prelude::*;
 
-use zombrr_damage::Health;
+use zombrr_health::Health;
 use crate::controllers::navigatable::{KeyboardInput, MouseInput, Navigatable};
 
 #[derive(Bundle)]
 pub struct PlayerBundle {
     pub name: Name,
     pub health: Health,
-    pub damage: zombrr_damage::ShowsDamage,
     pub root: zombrr_core::PlayerRoot,
     pub transform: Transform,
     pub global_transform: GlobalTransform,
@@ -32,7 +31,6 @@ impl From<Transform> for PlayerBundle {
             root: zombrr_core::PlayerRoot,
             transform,
             health: Health::default(),
-            damage: zombrr_damage::ShowsDamage,
             global_transform: GlobalTransform::identity(),
             navigatable: Navigatable::default(),
             keyboard: KeyboardInput,

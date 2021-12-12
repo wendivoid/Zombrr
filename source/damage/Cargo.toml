@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 bevy = "0.5.0"
 zombrr-core = { path = "../core"}
+zombrr-health = { path = "../health" }

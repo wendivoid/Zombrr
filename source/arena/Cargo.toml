@@ -11,6 +11,7 @@ bevy_loading = "0.1.1"
 zombrr-map = { path = "../map" }
 zombrr-core = { path = "../core" }
 zombrr-damage = { path = "../damage" }
+zombrr-health = { path = "../health" }
 bevy_sky = { path = "../../crates/bevy_sky" }
 bevy_rapier3d = { version = "0.10.0", features = ["serde-serialize"] }
 bevy_hilt = { git = "https://github.com/Bytebuddha/bevy_hilt", features = ["3d"] }
