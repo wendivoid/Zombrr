@@ -62,13 +62,9 @@ pub fn mouse_button_input(
 pub fn mouse_input(
     time: Res<Time>,
     mut mousemotion: EventReader<MouseMotion>,
-    keys: Res<Input<KeyCode>>,
-    mut query: Query<(&mut Navigatable, &mut MouseInput)>,
+    mut query: Query<(&mut Navigatable, &MouseInput)>,
 ) {
-    for (mut navigatable, mut mouse) in query.iter_mut() {
-        if keys.just_pressed(KeyCode::Escape) {
-            mouse.disabled = !mouse.disabled;
-        }
+    for (mut navigatable, mouse) in query.iter_mut() {
         if mouse.disabled {
             continue;
         }
