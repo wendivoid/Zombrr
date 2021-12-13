@@ -8,77 +8,71 @@ use bevy_render::prelude::*;
 use bevy_scene::prelude::*;
 use chrono::{TimeZone, Utc};
 use zombrr_core::packages::{MapData, SkyPreset};
-use zombrr_core::{ArenaOptions, ZombrrPackages};
 
 use bevy_sky::{SkyBundle, SkyMaterial, Sun};
 
 use crate::ArenaMapData;
 
 pub fn spawn_arena(
+    map: crate::ActiveMap,
     mut commands: Commands,
-    options: Res<ArenaOptions>,
-    packages: Res<ZombrrPackages>,
     asset_server: Res<AssetServer>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut scene_spawner: ResMut<SceneSpawner>,
     resources: Option<ResMut<crate::ArenaMapData>>,
     mut sky_materials: ResMut<Assets<SkyMaterial>>,
 ) {
-    if let Some(map) = packages.get_map(&options.map) {
-        debug!(
-            "Spawning Map `{}`\n\t-> Name = {}\n\t-> Path: {:?}\n\t-> Ambient Light = {:?}\n\t-> Skybox = {:?}",
-            map.name, map.name, map.path, map.meta.ambient_light, map.meta.sky
-        );
-        match &map.meta.map {
-            MapData::Gltf { path } => {
-                let mut map_path = map.path.clone();
-                map_path.push(path);
-                let asset_path = format!("{}#Scene0", map_path.to_str().unwrap());
-                let scene = asset_server.load(asset_path.as_str());
-                let instance_id = scene_spawner.spawn(scene.clone());
-                if let Some(mut resources) = resources {
-                    *resources = ArenaMapData {
-                        name: map.name.clone(),
-                        scene,
-                        instance_id,
-                        loaded: false,
-                    };
-                } else {
-                    commands.insert_resource(ArenaMapData {
-                        name: map.name.clone(),
-                        scene,
-                        instance_id,
-                        loaded: false,
-                    });
-                }
+    debug!(
+        "Spawning Map `{}`\n\t-> Name = {}\n\t-> Path: {:?}\n\t-> Ambient Light = {:?}\n\t-> Skybox = {:?}",
+        map.0.name, map.0.name, map.0.path, map.0.meta.ambient_light, map.0.meta.sky
+    );
+    match &map.0.meta.map {
+        MapData::Gltf { path } => {
+            let mut map_path = map.0.path.clone();
+            map_path.push(path);
+            let asset_path = format!("{}#Scene0", map_path.to_str().unwrap());
+            let scene = asset_server.load(asset_path.as_str());
+            let instance_id = scene_spawner.spawn(scene.clone());
+            if let Some(mut resources) = resources {
+                *resources = ArenaMapData {
+                    name: map.0.name.clone(),
+                    scene,
+                    instance_id,
+                    loaded: false,
+                };
+            } else {
+                commands.insert_resource(ArenaMapData {
+                    name: map.0.name.clone(),
+                    scene,
+                    instance_id,
+                    loaded: false,
+                });
             }
         }
-        commands.insert_resource(AmbientLight {
-            color: crate::zombrr_color_to_bevy(&map.meta.ambient_light.color),
-            brightness: map.meta.ambient_light.brightness,
-        });
-        commands
-            .spawn_bundle(SkyBundle {
-                sun: Sun {
-                    latitude: map.meta.sky.latitude as f64,
-                    longitude: map.meta.sky.longitude as f64,
-                    simulation_seconds_per_second: 24.0 * 60.0 * 60.0
-                        / map.meta.sky.day_length as f64,
-                    active: map.meta.sky.active,
-                    distance: map.meta.sky.distance,
-                    now: Utc.ymd(2021, 03, 01).and_hms(7, 0, 0),
-                },
-                mesh: meshes.add(Mesh::from(shape::Cube {
-                    size: map.meta.sky.sky_size,
-                })),
-                material: sky_materials.add(preset_to_material(&map.meta.sky.preset)),
-                ..Default::default()
-            })
-            .insert(Name::new("Arena Map SkyBox"))
-            .insert(super::ArenaMapSkyBox);
-    } else {
-        error!("Map not found: {:?}", options.map);
     }
+    commands.insert_resource(AmbientLight {
+        color: crate::zombrr_color_to_bevy(&map.0.meta.ambient_light.color),
+        brightness: map.0.meta.ambient_light.brightness,
+    });
+    commands
+    .spawn_bundle(SkyBundle {
+        sun: Sun {
+            latitude: map.0.meta.sky.latitude as f64,
+            longitude: map.0.meta.sky.longitude as f64,
+            simulation_seconds_per_second: 24.0 * 60.0 * 60.0
+            / map.0.meta.sky.day_length as f64,
+            active: map.0.meta.sky.active,
+            distance: map.0.meta.sky.distance,
+            now: Utc.ymd(2021, 03, 01).and_hms(7, 0, 0),
+        },
+        mesh: meshes.add(Mesh::from(shape::Cube {
+            size: map.0.meta.sky.sky_size,
+        })),
+        material: sky_materials.add(preset_to_material(&map.0.meta.sky.preset)),
+        ..Default::default()
+    })
+    .insert(Name::new("Arena Map SkyBox"))
+    .insert(super::ArenaMapSkyBox);
 }
 
 fn preset_to_material(preset: &SkyPreset) -> SkyMaterial {

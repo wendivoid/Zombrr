@@ -4,9 +4,11 @@ mod init;
 mod plugin;
 mod resources;
 mod spawn;
+mod active_map;
 pub use self::entities::*;
 pub use self::plugin::MapPlugin;
 pub use self::resources::ArenaMapData;
+pub use self::active_map::ActiveMap;
 
 pub mod gltf;
 
