@@ -1,16 +1,16 @@
-mod cleanup;
-mod entities;
-mod init;
 mod plugin;
 mod resources;
-mod spawn;
+mod systems;
 mod active_map;
-pub use self::entities::*;
 pub use self::plugin::MapPlugin;
 pub use self::resources::ArenaMapData;
 pub use self::active_map::ActiveMap;
 
 pub mod gltf;
+
+pub struct ArenaMapRoot;
+pub struct ArenaMapSkyBox;
+pub struct ArenaGltfMapObject;
 
 use zombrr_core::packages::Color as AssetColor;
 

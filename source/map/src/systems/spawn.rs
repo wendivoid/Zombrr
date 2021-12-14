@@ -7,19 +7,18 @@ use bevy_pbr::AmbientLight;
 use bevy_render::prelude::*;
 use bevy_scene::prelude::*;
 use chrono::{TimeZone, Utc};
-use zombrr_core::packages::{MapData, SkyPreset};
+use zombrr_core::packages::{MapData, SkyPreset, Sky};
 
 use bevy_sky::{SkyBundle, SkyMaterial, Sun};
 
 use crate::ArenaMapData;
 
-pub fn spawn_arena(
+pub fn spawn_arena_map(
     map: crate::ActiveMap,
     mut commands: Commands,
     asset_server: Res<AssetServer>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut scene_spawner: ResMut<SceneSpawner>,
-    resources: Option<ResMut<crate::ArenaMapData>>,
     mut sky_materials: ResMut<Assets<SkyMaterial>>,
 ) {
     debug!(
@@ -33,21 +32,12 @@ pub fn spawn_arena(
             let asset_path = format!("{}#Scene0", map_path.to_str().unwrap());
             let scene = asset_server.load(asset_path.as_str());
             let instance_id = scene_spawner.spawn(scene.clone());
-            if let Some(mut resources) = resources {
-                *resources = ArenaMapData {
-                    name: map.0.name.clone(),
-                    scene,
-                    instance_id,
-                    loaded: false,
-                };
-            } else {
-                commands.insert_resource(ArenaMapData {
-                    name: map.0.name.clone(),
-                    scene,
-                    instance_id,
-                    loaded: false,
-                });
-            }
+            commands.insert_resource(ArenaMapData {
+                name: map.0.name.clone(),
+                scene,
+                instance_id,
+                loaded: false,
+            });
         }
     }
     commands.insert_resource(AmbientLight {
@@ -56,15 +46,7 @@ pub fn spawn_arena(
     });
     commands
     .spawn_bundle(SkyBundle {
-        sun: Sun {
-            latitude: map.0.meta.sky.latitude as f64,
-            longitude: map.0.meta.sky.longitude as f64,
-            simulation_seconds_per_second: 24.0 * 60.0 * 60.0
-            / map.0.meta.sky.day_length as f64,
-            active: map.0.meta.sky.active,
-            distance: map.0.meta.sky.distance,
-            now: Utc.ymd(2021, 03, 01).and_hms(7, 0, 0),
-        },
+        sun: preset_to_sun(&map.0.meta.sky),
         mesh: meshes.add(Mesh::from(shape::Cube {
             size: map.0.meta.sky.sky_size,
         })),
@@ -72,7 +54,19 @@ pub fn spawn_arena(
         ..Default::default()
     })
     .insert(Name::new("Arena Map SkyBox"))
-    .insert(super::ArenaMapSkyBox);
+    .insert(crate::ArenaMapSkyBox);
+}
+
+fn preset_to_sun(sky: &Sky) -> Sun {
+    Sun {
+        latitude: sky.latitude as f64,
+        longitude: sky.longitude as f64,
+        simulation_seconds_per_second: 24.0 * 60.0 * 60.0
+        / sky.day_length as f64,
+        active: sky.active,
+        distance: sky.distance,
+        now: Utc.ymd(2021, 03, 01).and_hms(7, 0, 0),
+    }
 }
 
 fn preset_to_material(preset: &SkyPreset) -> SkyMaterial {

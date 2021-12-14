@@ -16,8 +16,8 @@ pub fn init_map_objects(
     scene_spawner: Res<SceneSpawner>,
     meshes: Res<Assets<Mesh>>,
     root_elements: Query<Entity, Without<Parent>>,
-    parents: Query<(&GltfExtras, &Children, Option<&Name>), With<super::ArenaGltfMapObject>>,
-    children_query: Query<(Entity, &Handle<Mesh>), With<super::ArenaGltfMapObject>>,
+    parents: Query<(&GltfExtras, &Children, Option<&Name>), With<crate::ArenaGltfMapObject>>,
+    children_query: Query<(Entity, &Handle<Mesh>), With<crate::ArenaGltfMapObject>>,
 ) -> Progress {
     let mut progress = 0;
     if let Some(map_data) = &resources {
@@ -28,7 +28,7 @@ pub fn init_map_objects(
                     commands
                         .entity(root)
                         .insert(Name::new(format!("Arena Map({})", map_data.name)))
-                        .insert(super::ArenaMapRoot);
+                        .insert(crate::ArenaMapRoot);
                 }
                 if let Ok((extras, children, name)) = parents.get(entity) {
                     for child in children.iter() {
@@ -97,7 +97,7 @@ pub fn init_map_objects(
                 } else {
                     commands
                         .entity(entity)
-                        .insert_bundle((super::ArenaGltfMapObject,));
+                        .insert_bundle((crate::ArenaGltfMapObject,));
                 }
             });
             progress = 1;

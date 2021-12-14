@@ -12,15 +12,15 @@ impl Plugin for MapPlugin {
             .add_plugin(bevy_sky::SkyPlugin)
             .add_system_set(
                 SystemSet::on_enter(ZombrrState::Arena(ArenaState::Loading))
-                    .with_system(super::spawn::spawn_arena.system()),
+                    .with_system(super::systems::spawn_arena_map.system()),
             )
             .add_system_set(
                 SystemSet::on_update(ZombrrState::Arena(ArenaState::Loading))
-                    .with_system(track(super::init::init_map_objects.system())),
+                    .with_system(track(super::systems::init_map_objects.system())),
             )
             .add_system_set(
                 SystemSet::on_exit(ZombrrState::Arena(ArenaState::Playing))
-                    .with_system(super::cleanup::cleanup_map_objects.system()),
+                    .with_system(super::systems::cleanup_map_objects.system()),
             );
     }
 }

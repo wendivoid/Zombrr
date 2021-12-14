@@ -8,7 +8,7 @@ mod characters;
 pub use self::characters::{Character, CharacterMeta, CharacterRef};
 
 mod map;
-pub use self::map::{AmbientLight, Map, MapData, MapMeta, MapRef, SkyPreset};
+pub use self::map::{AmbientLight, Map, MapData, MapMeta, MapRef, SkyPreset, Sky};
 
 mod color;
 pub use self::color::Color;
