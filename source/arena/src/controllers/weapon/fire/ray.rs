@@ -6,9 +6,7 @@ use zombrr_core::packages::WeaponMeta;
 use zombrr_core::WeaponEntity;
 
 pub fn fire_ray(
-    commands: &mut Commands,
     range: f32,
-    tracer_color: Color,
     children: &Children,
     assailant: Entity,
     weapon_meta: &WeaponMeta,
@@ -45,20 +43,11 @@ pub fn fire_ray(
                 InteractionGroups::all(),
                 None,
             ) {
-                let point = ray.point_at(normal.toi - 0.01);
-                commands
-                .spawn()
-                .insert(crate::controllers::tracers::Tracer {
-                    length: 150,
-                    color: tracer_color,
-                    point: shot.translation,
-                    target: point.into(),
-                });
                 health_events.send(Damage {
                     value: weapon_meta.damage,
                     target: handle.entity(),
                     assailant,
-                    point: point.into(),
+                    point: ray.point_at(normal.toi - 0.01).into(),
                     surface_normal: normal.normal.into()
                 });
             }

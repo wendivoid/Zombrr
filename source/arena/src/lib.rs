@@ -1,6 +1,5 @@
 pub mod controllers;
 mod systems;
-mod utils;
 
 pub mod modes;
 pub use self::modes::ModesPlugin;

@@ -9,7 +9,6 @@ use zombrr_core::packages::{WeaponMeta, WeaponAction};
 use zombrr_core::{WeaponRoot, WeaponEntity};
 
 pub fn handle_fire_weapon(
-    mut commands: Commands,
     mut events: EventReader<FireWeapon>,
     query_pipeline: Res<QueryPipeline>,
     colliders: QueryPipelineColliderComponentsQuery,
@@ -22,11 +21,9 @@ pub fn handle_fire_weapon(
             debug!("Firing Weapon: Entity({:?})", *weapon);
             if magazine.fire() {
                 match &weapon_meta.action {
-                    WeaponAction::Ray { range, tracer_color } => {
+                    WeaponAction::Ray { range } => {
                         ray::fire_ray(
-                            &mut commands,
                             *range,
-                            crate::utils::zombrr_color_to_bevy(tracer_color),
                             children,
                             *assailant,
                             weapon_meta,

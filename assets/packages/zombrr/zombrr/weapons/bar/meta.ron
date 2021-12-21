@@ -3,8 +3,7 @@
     description: "Common Rifle",
     scene: "bar.glb",
     action: Ray (
-        range: 1000.0,
-        tracer_color: [1.0, 1.0, 1.0]
+        range: 1000.0
     ),
     magazine: Magazine (
         count: 12,

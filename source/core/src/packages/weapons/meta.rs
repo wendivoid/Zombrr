@@ -1,7 +1,5 @@
 use serde::{Deserialize, Serialize};
 
-use crate::packages::Color;
-
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct WeaponMeta {
     #[serde(flatten)]
@@ -21,8 +19,6 @@ pub enum WeaponAction {
     Ray {
         #[serde(default = "default_range")]
         range: f32,
-        #[serde(default = "tracer_color")]
-        tracer_color: Color
     }
 }
 
@@ -48,9 +44,6 @@ fn magazine_count() -> usize {
 }
 fn default_damage() -> f32 {
     50.0
-}
-fn tracer_color() -> Color {
-    Color::Rgba([0.80, 0.33, 0.0, 0.50])
 }
 fn default_range() -> f32 {
     1000.0
